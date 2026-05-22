@@ -1,0 +1,159 @@
+erDiagram
+  auteurs {
+    BIGINT id_auteur PK
+    BIGINT id_langue_ecriture FK
+    BIGINT id_pays FK
+  }
+  auteurs_pays {
+    BIGINT id_auteur PK
+    BIGINT id_pays PK
+    BIGINT id_type_relation_pays PK
+  }
+  contacts {
+    BIGINT id_contact PK
+  }
+  editeurs {
+    BIGINT id_editeur PK
+    BIGINT id_pays FK
+  }
+  formatfile {
+    BIGINT id_formatFile PK
+  }
+  impression {
+    BIGINT id_impression PK
+  }
+  langues {
+    BIGINT id_langue PK
+  }
+  livres {
+    BIGINT id_livre PK
+    BIGINT id_editeur FK
+    BIGINT id_impression FK
+    BIGINT id_langue FK
+    BIGINT id_serie FK
+    BIGINT id_statut_lecture FK
+    BIGINT id_support_lecture FK
+    BIGINT id_type_acquisition FK
+  }
+  livres_auteurs {
+    BIGINT id_livre PK
+    BIGINT id_auteur PK
+    BIGINT id_role_auteur PK
+  }
+  livres_contacts {
+    BIGINT id_livre PK
+    BIGINT id_contact PK
+    BIGINT id_livre_fichier FK
+  }
+  livres_fichiers {
+    BIGINT id_livre_fichier PK
+    BIGINT id_formatFile FK
+    BIGINT id_livre FK
+    BIGINT id_livre_staging FK
+    BIGINT id_scope_livre FK
+    BIGINT id_type_fichier FK
+  }
+  livres_prixlit_annee {
+    BIGINT id_livre PK
+    BIGINT id_prixLit_Annee PK
+  }
+  livres_staging {
+    BIGINT id_livre_staging PK
+    BIGINT id_livre_cible FK
+    BIGINT id_serie FK
+    BIGINT id_source_import FK
+    BIGINT id_statut_staging FK
+  }
+  livres_staging_auteurs {
+    BIGINT id_livre_staging PK
+    BIGINT id_auteur PK
+    BIGINT id_role_auteur PK
+  }
+  livres_tags {
+    BIGINT id_livre PK
+    BIGINT id_tag PK
+  }
+  meta_schema {
+    TINYINT id PK
+  }
+  param_api {
+    BIGINT id_param_api PK
+  }
+  param_db {
+    BIGINT id_param_db PK
+  }
+  param_paths {
+    BIGINT id_param_path PK
+  }
+  pays {
+    BIGINT id_pays PK
+  }
+  prixlit {
+    BIGINT id_prixLit PK
+  }
+  prixlit_annee {
+    BIGINT id_prixLit_Annee PK
+    BIGINT id_prixLit FK
+    BIGINT id_prixlit_categorie FK
+  }
+  prixlit_categorie {
+    BIGINT id_prixlit_categorie PK
+    BIGINT id_prixLit FK
+  }
+  ref_enum {
+    BIGINT id_enum PK
+  }
+  series {
+    BIGINT id_serie PK
+    BIGINT id_series_format FK
+    BIGINT id_series_statut FK
+  }
+  series_format {
+    BIGINT id_series_format PK
+  }
+  series_statut {
+    BIGINT id_series_statut PK
+  }
+  tags {
+    BIGINT id_tag PK
+  }
+  auteurs ||--o{ auteurs_pays : "id auteur"
+  auteurs ||--o{ livres_auteurs : "auteur"
+  auteurs ||--o{ livres_staging_auteurs : "id auteur"
+  contacts ||--o{ livres_contacts : "id contact"
+  editeurs ||--o{ livres : "id editeur"
+  formatfile ||--o{ livres_fichiers : "id formatFile"
+  impression ||--o{ livres : "id impression"
+  langues ||--o{ auteurs : "id langue ecriture"
+  langues ||--o{ livres : "id langue"
+  livres ||--o{ livres_auteurs : "livre"
+  livres ||--o{ livres_contacts : "livre"
+  livres ||--o{ livres_fichiers : "livre"
+  livres ||--o{ livres_prixlit_annee : "livre"
+  livres ||--o{ livres_staging : "livre"
+  livres ||--o{ livres_tags : "livre"
+  livres_fichiers ||--o{ livres_contacts : "id livre fichier"
+  livres_staging ||--o{ livres_fichiers : "id livre staging"
+  livres_staging ||--o{ livres_staging_auteurs : "id livre staging"
+  pays ||--o{ auteurs : "id pays"
+  pays ||--o{ auteurs_pays : "id pays"
+  pays ||--o{ editeurs : "id pays"
+  prixlit ||--o{ prixlit_annee : "édition"
+  prixlit ||--o{ prixlit_categorie : "catégories"
+  prixlit_annee ||--o{ livres_prixlit_annee : "prix (année)"
+  prixlit_categorie ||--o{ prixlit_annee : "catégorie"
+  ref_enum ||--o{ auteurs_pays : "id type relation pays"
+  ref_enum ||--o{ livres : "id statut lecture"
+  ref_enum ||--o{ livres : "id support lecture"
+  ref_enum ||--o{ livres : "id type acquisition"
+  ref_enum ||--o{ livres_auteurs : "id role auteur"
+  ref_enum ||--o{ livres_fichiers : "id scope livre"
+  ref_enum ||--o{ livres_fichiers : "id type fichier"
+  ref_enum ||--o{ livres_staging : "id source import"
+  ref_enum ||--o{ livres_staging : "id statut staging"
+  ref_enum ||--o{ livres_staging_auteurs : "id role auteur"
+  series ||--o{ livres : "id serie"
+  series ||--o{ livres_staging : "id serie"
+  series_format ||--o{ series : "format"
+  series_statut ||--o{ series : "statut"
+  tags ||--o{ livres_tags : "tag"

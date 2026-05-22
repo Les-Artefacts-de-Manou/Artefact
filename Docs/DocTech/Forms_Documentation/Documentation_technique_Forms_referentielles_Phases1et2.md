@@ -1,5 +1,20 @@
 # 📘 Documentation technique – Forms référentielles - Phases 1 & 2
 
+[TOC]
+
+## 0. Checklist – Créer un nouveau référentiel
+
+1. Créer la classe métier `Xxx` dans `Classes/Referentiels`
+2. Ajouter les requêtes SQL `Xxx_*` dans `QueryModule`
+3. Ajouter les méthodes CRUD `Xxx_*` dans `GestionReferentiel`
+4. Créer la Form `GestionXxx` avec structure standard (`pnlTop`, `tlpMain`, `pnlActions`, `stsStatus`)
+5. Implémenter modes `Consultation / Nouveau / Modification`
+6. Implémenter `SelectionChanged` + `BindSelectedToDetails()`
+7. Implémenter validation locale (`errProvider`) + statut global (`StatusStrip`)
+8. Mettre à jour `Rules.md`, `Process_Artefact.md` et `CHANGELOG.md`
+
+------
+
 ## 1. Objectif
 
 Ce document décrit la structure technique et fonctionnelle des forms référentielles d’Artefact.
@@ -788,7 +803,6 @@ MariaDB
 
 ###### GestionPrixLit - Tab Année
 
-[TOC]
 
 <img src="Images/GestionPrixLit_3.png" alt="GestionPrixLit 3" style="zoom:70%;" />
 
@@ -801,20 +815,3 @@ MariaDB
 ---
 
 ---
-
-> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
->
-> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
-> mailto: `joelle@nguyen.eu`
->
-> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
-> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
-
-------
-
-------
-
-
-
-[TOC]
-

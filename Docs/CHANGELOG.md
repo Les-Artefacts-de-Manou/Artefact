@@ -1,4 +1,13 @@
 # CHANGELOG Artefact
+
+[TOC]
+
+## 🧭 Convention de ce changelog
+
+- Format privilégié : **Added / Changed / Fixed / Removed**
+- Les entrées historiques de démarrage (février 2026) peuvent conserver un format plus narratif
+- Les nouvelles entrées doivent rester courtes, factuelles et vérifiables
+
 ---
 
 ## 📅 08/02/2026
@@ -1980,23 +1989,4 @@ Mise en place du modèle standard pour les champs de notes enrichies (RTF + text
 
 ### Known Issues
 - Quelques ajustements UI / comportements restaient à tester
-- La recherche globale transverse a été volontairement reportée 
-
-
-
-
-
-
----
-
-> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
->
-> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
-> mailto: `joelle@nguyen.eu`
->
-> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
-> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
->
-
----
----
+- La recherche globale transverse a été volontairement reportée

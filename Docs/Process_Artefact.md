@@ -1,5 +1,7 @@
 # 📌 Processus 01 – Démarrage & Connexion MariaDB
 
+[TOC]
+
 ## 🎯 Objectif
 
 Garantir qu’Artefact ne démarre jamais sans :
@@ -993,19 +995,17 @@ AK --> AL["Reload Grid / Sync Details"]
 
 
 ---
----
 
-> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
->
-> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
-> mailto: `joelle@nguyen.eu`
->
-> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
-> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
->
+# 📌 Processus 06 – Import Calibre (à venir, priorité haute)
 
----
----
+## 🎯 Objectif
 
-[TOC]
+Documenter le pipeline complet de copie `Metadata.db` → import staging → normalisation → validation vers `livres`.
 
+## 🧩 Points à couvrir
+
+- Pré-contrôles sur la DB Calibre copiée
+- Traçabilité des imports et rejets
+- Mapping auteur / tags / formats
+- Gestion des doublons et collisions de métadonnées
+- Journalisation des anomalies bloquantes et non bloquantes

@@ -1,5 +1,13 @@
 # 📚 Artefact
+[TOC]
+
 ---
+
+## 🎭 Pourquoi Artefact ?
+
+Artefact est né d'une frustration concrète : après des années d'usage de Calibre et des milliers de livres gérés, certains besoins personnels restaient mal couverts.
+
+Ce projet est à la fois un laboratoire technique, un projet plaisir et une bibliothèque de cœur. L'objectif est de construire une application robuste, élégante et évolutive, qui reste fidèle à ma façon de lire, classer et explorer mes livres.
 
 ## 🧩 Description
 
@@ -11,7 +19,7 @@ Le projet est une **reconstruction volontaire et maîtrisée** d’Artefactothè
 
 L'IA est fortement impliquée pour enrichir les fiches de livres, proposer des recommandations, des nouveautés, les dates de sortie, proposer des news et automatiser certaines tâches de gestion.
 
-Icone Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" style="zoom:10%;" /> 
+Icône Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" width="48" />
 
 ## 🎯 Objectifs
 
@@ -32,6 +40,12 @@ Icone Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" style="zoom
 
   Documenter chaque décision structurante
 
+## 🤖 Vision IA
+
+L'IA est prévue comme un moteur d'enrichissement progressif : aide au résumé, détection d'incohérences, suggestions de métadonnées, recommandations contextualisées et automatisation de certaines tâches répétitives.
+
+L'objectif n'est pas de remplacer le jugement humain, mais de gagner du temps sur les étapes à faible valeur et de garder l'énergie pour la curation.
+
 ## 🧠 Philosophie générale
 
 Artefact repose sur :
@@ -49,7 +63,7 @@ Artefact repose sur :
 ### 💻 Application
 
 - **Visual Studio Community 2026**
-- Version 18.6.0 (05/26)
+- Version 18.4.3 (31/03/26)
 - VB.NET
 - .NET 8 LTS
 - Windows Forms
@@ -60,11 +74,16 @@ Artefact repose sur :
 - Charset : `utf8mb4`
 - Collation : `utf8mb4_uca1400_ai_ci`
 - Nom base de données :  `Artefact`
+- Outil : `HeidiSQL 12.17` (12/04/26) 
+	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données et la gestion des schémas.
+- Outil : `DBeaver 26.0.2` (06/04/26)
+	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données, la gestion des schémas et les diagrammes.
 
-- Outil : `HeidiSQL 12.17 (24/04/26) 
-	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données et la gestion des schémas.
-- Outil : `DBeaver 26.0.4 (10/05/26)
-	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données et la gestion des schémas.
+###  ⚒️ Outils divers
+
+- `Typora by Appmakes.io 1.13.4` (14/04/26)
+  - Fichiers de documentation Markdown
+
 
 ### 🏚️ Versioning et sauvegarde
 
@@ -76,7 +95,7 @@ Artefact repose sur :
 
 - Les Artefacts de Manou - AngeljoNG <img src="https://avatars.githubusercontent.com/u/121104000?v=4" alt="img" style="zoom: 10%;" />
 
-###  ![Calibre](Assets/Icons/Calibre.png)  Calibre 9.8 (01/05/26) (Kovid Goyal) 
+###  ![Calibre](Assets/Icons/Calibre.png)  Calibre 9.7 (10/04/26) (Kovid Goyal) 
 
 Fichier `Metadata.db` de Calibre, utilisé pour l'importation des livres qui ont déja été insérés antérieurement dans l'application Calibre. Ce fichier est copié sous le nom de `myMetadata.db` dans le dossier `MDCalibre` pour une utilisation locale.
 Calibre est un logiciel de gestion de bibliothèque d'e-books, et le fichier `Metadata.db` contient les métadonnées des livres (https://calibre-ebook.com/fr). 
@@ -106,7 +125,6 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 - Aucune connexion ouverte manuellement ailleurs
 - Utilisation systématique du bloc `Using`
 - Pooling ADO.NET activé
-- 
 
 ---
 
@@ -205,27 +223,6 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 - Documentation détaillée de chaque formulaire, avec les processus métier, les règles de gestion, les	
 
 ___
-
-## 🚦 Flux de démarrage (Boot) — Connexion MariaDB
-
-Artefact établit la connexion MariaDB via une configuration locale chiffrée (DPAPI) stockée dans un fichier JSON.
-L’objectif est d’éviter toute dépendance circulaire et de ne jamais stocker de mot de passe en clair.
-
-#### 📂 Configuration locale
-
-- Fichier : `%APPDATA%\Artefact\artefact.local.json`
-- Contenu : host, port, database, user, options + mot de passe chiffré DPAPI (Base64)
-- Le mot de passe est chiffré avec DPAPI (CurrentUser) :
-  - Lisible uniquement par le même utilisateur Windows
-  - Non portable tel quel vers une autre machine (comportement normal)
-
-#### 🧠 Principes
-
-- La configuration DB nécessaire au démarrage ne dépend pas de la base.
-- `DatabaseManager` construit la connexion uniquement depuis la configuration locale.
-- La navigation applicative reste verrouillée tant que la connexion DB n’est pas validée.
-
----
 
 ## 🚀 Démarrage & Connexion MariaDB
 
@@ -579,12 +576,16 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 - `Rules` : [`Rules.md`](Docs/Rules.md) - Règles de codage, bonnes pratiques et conventions à suivre
 - `Processus Artefact` : [`Process_Artefact.md`](Docs/Process_Artefact.md) - Description des processus métier, des flux de données et des règles de gestion
 - `TODO` : [`TODO.md`](Docs/TODO.md) - Liste des tâches à réaliser et des améliorations prévues
-- `Backup Database Artefact sans données` : [`backup_NoData_artefact.sql`](Docs/Database/backup_NoData_artefact.sql) - Backup de la base de données SQLite sans données, pour initialiser le projet
+- `Backup Database Artefact sans données` : [`backup_NoData_artefact.sql`](Docs/Database/backup_NoData_artefact.sql) - Backup de la base de données MariaDB sans données, pour initialiser le projet
 - `Backup Database Artefact avec données` : [`backup_WithData_artefact.sql`](Docs/Database/backup_WithData_artefact.sql) -  Pour les données de base (Tests)
 - `Diagrammes DB` : [`artefact_schema_erdiagram.mmd`](Docs/Database/artefact_schema_erdiagram.mmd) - Diagrammes de la base de données
 - `Diagramme image` : [`artefact_key.png`](Docs/Database/artefact_key.png) - Diagramme de la base de données au format image
 - `Modèle database`  : [`ModeleDB.md`](Docs/Database/ModeleDB.md) - Description détaillée du modèle de données, des tables, des relations, etc.
 - `Documentation Technique : Forms référentielles Phase 1 et 2`  : [`Documentation_technique_Forms_referentielles_Phases1et2.md`](Docs/DocTech/Forms_Documentation/Documentation_technique_Forms_referentielles_Phases1et2.md) - Documentation technique des forms référentielles, phases 1 et 2
+- `Vision produit` : [`VISION.md`](Docs/VISION.md) - Vision, intention produit et ADN du projet
+- `Guide de reprise` : [`REPRISE.md`](Docs/REPRISE.md) - Démarrage rapide pour reprendre le projet proprement
+- `Glossaire` : [`GLOSSAIRE.md`](Docs/GLOSSAIRE.md) - Définitions des termes métier et techniques du projet
+- `Tableaux de colonnes DB` : [`Tableaux_Colonnes.md`](Docs/Database/Tableaux_Colonnes.md) - Vue consolidée des champs/types/contraintes table par table
 
 
 ---
@@ -601,6 +602,3 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 
 ---
 ---
-
-[TOC]
-

@@ -1,5 +1,7 @@
 # 📐 Règles de conception 
 
+[TOC]
+
 Ce document décrit les règles de conception et décisions techniques prises
 lors de la création de la base de données **Artefact**.
 
@@ -7,7 +9,7 @@ Ces règles sont considérées comme **fondatrices** pour Artefact v1.
 
 ---
 
- # 📐 Règles générales de développement
+## 📐 Règles générales de développement
 
 ### 1. **🧠 Planifier d’abord**  
 
@@ -840,21 +842,3 @@ Si nécessaire :
 
 Sinon :
 - prévoir validation stricte empêchant toute valeur invalide en base
-
----
----
-
-> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
->
-> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
-> mailto: `joelle@nguyen.eu`
->
-> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
-> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
->
-
----
----
-
-[TOC]
-

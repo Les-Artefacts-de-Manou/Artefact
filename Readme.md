@@ -93,7 +93,7 @@ Artefact repose sur :
 - https://github.com/AngeljoNG/Artefact (Private) (Mise à jour en continu)
 - https://github.com/Les-Artefacts-de-Manou/Artefact (Public) (Dernière MàJ : 2026-03-31)
 
-- Les Artefacts de Manou - AngeljoNG <img src="https://avatars.githubusercontent.com/u/121104000?v=4" alt="img" style="zoom: 10%;" />
+- Les Artefacts de Manou - AngeljoNG <img src="https://avatars.githubusercontent.com/u/121104000?v=4" width="40" alt="Avatar">
 
 ###  ![Calibre](Assets/Icons/Calibre.png)  Calibre 9.7 (10/04/26) (Kovid Goyal) 
 

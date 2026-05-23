@@ -19,7 +19,7 @@ Le projet est une **reconstruction volontaire et maîtrisée** d’Artefactothè
 
 L'IA est fortement impliquée pour enrichir les fiches de livres, proposer des recommandations, des nouveautés, les dates de sortie, proposer des news et automatiser certaines tâches de gestion.
 
-Icône Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" width="48" />
+Icône Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" width="64" />
 
 ## 🎯 Objectifs
 
@@ -63,7 +63,7 @@ Artefact repose sur :
 ### 💻 Application
 
 - **Visual Studio Community 2026**
-- Version 18.4.3 (31/03/26)
+- Version 18.6.1 (05/26)
 - VB.NET
 - .NET 8 LTS
 - Windows Forms
@@ -74,14 +74,14 @@ Artefact repose sur :
 - Charset : `utf8mb4`
 - Collation : `utf8mb4_uca1400_ai_ci`
 - Nom base de données :  `Artefact`
-- Outil : `HeidiSQL 12.17` (12/04/26) 
+- Outil : `HeidiSQL 12.17` (21/05/26) 
 	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données et la gestion des schémas.
-- Outil : `DBeaver 26.0.2` (06/04/26)
+- Outil : `DBeaver 26.0.5` (18/05/26)
 	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données, la gestion des schémas et les diagrammes.
 
 ###  ⚒️ Outils divers
 
-- `Typora by Appmakes.io 1.13.4` (14/04/26)
+- `Typora by Appmakes.io 1.13.6` (21/05/26)
   - Fichiers de documentation Markdown
 
 
@@ -91,11 +91,11 @@ Artefact repose sur :
 
 - pour le contrôle de version et la collaboration
 - https://github.com/AngeljoNG/Artefact (Private) (Mise à jour en continu)
-- https://github.com/Les-Artefacts-de-Manou/Artefact (Public) (Dernière MàJ : 2026-03-31)
+- https://github.com/Les-Artefacts-de-Manou/Artefact (Public) (Dernière MàJ : 2026-05-22)
 
 - Les Artefacts de Manou - AngeljoNG <img src="https://avatars.githubusercontent.com/u/121104000?v=4" width="40" alt="Avatar">
 
-###  ![Calibre](Assets/Icons/Calibre.png)  Calibre 9.7 (10/04/26) (Kovid Goyal) 
+###  ![Calibre](Assets/Icons/Calibre.png)  Calibre 9.8 (01/05/26) (Kovid Goyal) 
 
 Fichier `Metadata.db` de Calibre, utilisé pour l'importation des livres qui ont déja été insérés antérieurement dans l'application Calibre. Ce fichier est copié sous le nom de `myMetadata.db` dans le dossier `MDCalibre` pour une utilisation locale.
 Calibre est un logiciel de gestion de bibliothèque d'e-books, et le fichier `Metadata.db` contient les métadonnées des livres (https://calibre-ebook.com/fr). 
@@ -104,7 +104,7 @@ la copie du fichier se fait avec 2 fichiers .bat, pour l'instant manuellement, m
 - **Copie du fichier Metadata.db** : 
   - `CopyMetadata.bat` : copie le fichier Metadata.db de Calibre vers le dossier `MDCalibre` sous le nom `metadata_%curdate%.db` et nettoie les anciens fichiers (Voir Paths utilisés dans Artefact, ci-dessous)
   - `ReplaceMyMetadata.bat` : `metadata_%curdate%.db` renommé en `myMetadata.db`
-- **DBBrowser for SQLLite** : utilisé pour visualiser le fichier `myMetadata.db` de Calibre. Il permet d'explorer les tables, afin de faciliter l'importation des données déjà implémentées dans Calibre, données en SQLite.
+- **DBBrowser for SQLLite** : V. 3.13.1  - utilisé pour visualiser le fichier `myMetadata.db` de Calibre. Il permet d'explorer les tables, afin de faciliter l'importation des données déjà implémentées dans Calibre, données en SQLite.
 
 ### 📂 Packages et bibliothèques
 
@@ -219,8 +219,10 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
    #####        📂 Form_Basique
 <img src="Docs/Images/Form_Modele._Plus.png" alt="FormModele" style="zoom:70%;" />
 
+
   #####        📂 Forms_Documentation
-- Documentation détaillée de chaque formulaire, avec les processus métier, les règles de gestion, les	
+- Documentation détaillée de chaque formulaire, avec les processus métier, les règles de gestion, les processus de validation, les messages utilisateur, etc.	: 
+	- [`Documentation_technique_Forms_referentielles_Phases1et2.md`](Docs/DocTech/Forms_Documentation/Documentation_technique_Forms_referentielles_Phases1et2.md)
 
 ___
 
@@ -434,32 +436,6 @@ Cela garantit :
 
 Si une nouvelle table est ajoutée et référence un référentiel existant (ex. `ref_enum`), il est impératif de mettre à jour le système de contrôle de suppression afin d’intégrer cette nouvelle dépendance.
 
-## Gestion des notes enrichies
-
-Artefact utilise un système standardisé pour les champs de notes nécessitant une mise en forme.
-
-Les notes sont éditées via un contrôle `RichTextBox` permettant :
-
-- gras
-- italique
-- souligné
-- listes
-- tabulations
-
-Le contenu est stocké dans la base sous deux formes :
-
-- **RTF** pour conserver la mise en forme
-- **texte brut miroir** pour permettre les recherches SQL
-
-Ce mécanisme est destiné à être réutilisé dans plusieurs référentiels de l'application :
-- éditeurs
-- auteurs
-- séries
-- tags
-- éventuellement livres
-
-Ce choix permet d'offrir un système de notes enrichies tout en conservant des performances de recherche simples côté base de données.
-
 ---
 
 ## Système de recommandations
@@ -528,9 +504,11 @@ Chaque champ de notes est stocké dans deux colonnes :
 - Le texte brut n'est jamais utilisé pour l'affichage riche
 - Toute manipulation passe par le helper
 
+Ce choix permet d'offrir un système de notes enrichies tout en conservant des performances de recherche simples côté base de données.
+
 ---
 
-## ⚠️ Attention — Valeurs UI vs Métier
+## ⚠️ Attention - Valeurs UI vs Métier
 
 Les contrôles UI (ex: ComboBox avec "Toutes origines") ne doivent jamais injecter de valeurs non métier en base.
 
@@ -587,10 +565,12 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 - `Glossaire` : [`GLOSSAIRE.md`](Docs/GLOSSAIRE.md) - Définitions des termes métier et techniques du projet
 - `Tableaux de colonnes DB` : [`Tableaux_Colonnes.md`](Docs/Database/Tableaux_Colonnes.md) - Vue consolidée des champs/types/contraintes table par table
 
-
----
 ---
 
+
+
+---
+>
 > **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
 >
 > Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
@@ -599,6 +579,6 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 > - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
 > - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
 >
+>
+---
 
----
----

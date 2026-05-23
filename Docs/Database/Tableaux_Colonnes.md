@@ -1,11 +1,11 @@
 # 🧾 Tableaux de colonnes – Base Artefact
 
-[TOC]
-
 Ce document centralise les **champs, types et contraintes visibles dans le script SQL**.
 Il sert de référence de travail pour les tables déjà en place, même si certaines zones fonctionnelles ne sont pas encore stabilisées.
 
 Source : [`backup_NoData_artefact.sql`](backup_NoData_artefact.sql).
+
+[TOC]
 
 ## `auteurs`
 

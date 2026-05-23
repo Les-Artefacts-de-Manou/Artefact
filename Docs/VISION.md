@@ -6,7 +6,7 @@
 
 Artefact est un projet personnel né d'un besoin réel : gérer une bibliothèque numérique massive de façon plus souple, plus riche et plus agréable que les outils actuels.
 
-Après des années d'usage de Calibre et des dizaines de milliers de livres référencés, j'ai voulu construire une application qui me ressemble : structurée, évolutive, exigeante sur la qualité des données, mais aussi créative.
+Après des années d'usage de Calibre et des milliers de livres référencés, j'ai voulu construire une application qui me ressemble : structurée, évolutive, exigeante sur la qualité des données, mais aussi créative.
 
 ## Ambition produit
 

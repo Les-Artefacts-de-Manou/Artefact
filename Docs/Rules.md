@@ -831,7 +831,7 @@ Ce modèle permet :
   - l'événement de recommandation
   - l'état du livre dans le système
 	
-### Règle — ComboBox (critique)
+### Règle - ComboBox (critique)
 
 Une ComboBox ne peut pas avoir un double rôle :
 - filtre

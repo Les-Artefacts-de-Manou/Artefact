@@ -262,25 +262,15 @@ ils définissent les valeurs utilisées par les tables métier (livres, staging,
 ###### Exemples :
 
 - Langues
-
 - Editeurs
-
 - FormatFile
-
 - Impression
-
 - Paramètres (prévu)
-
 - Ce processus garantit :
-
 - Une architecture cohérente
-
 - Une séparation stricte des responsabilités
-
 - Un comportement UI homogène
-
 - Une gestion sécurisée des suppressions et dépendances
-
 
 ## 🧭 Architecture du processus
 
@@ -303,13 +293,9 @@ Responsable **uniquement du SQL.**
 <u>Contient :</u>
 
 - SELECT
-
 - INSERT
-
 - UPDATE
-
 - DELETE
-
 - COUNT dépendances
 
 
@@ -339,13 +325,9 @@ Module d’accès aux données.
 <u>Responsabilités :</u>
 
 - Exécuter les requêtes SQL
-
 - Gérer les connexions MariaDB
-
 - Logger les erreurs
-
 - Remonter les exceptions
-
 
 <u>Connexion obtenue via :</u>
 
@@ -380,11 +362,8 @@ GestionImpression
 <u>Elle gère :</u>
 
 - l’interface utilisateur
-
 - la validation
-
 - la synchronisation Grid / détails
-
 - la logique CRUD
 
 
@@ -446,34 +425,22 @@ If _mode <> ModeEdition.Consultation Then Exit Sub
 #### Création
 
 1. bouton New
-
 2. passage en mode Nouveau
-
 3. champs vidés
-
 4. saisie utilisateur
-
 5. validation
-
 6. Insert
-
 7. rechargement de la grille
 
 
 #### Modification
 
 1. sélection dans la grille
-
 2. bouton Edit
-
 3. création d’un snapshot
-
 4. passage en mode Modification
-
 5. validation
-
 6. Update
-
 7. rechargement grille
 
 
@@ -492,13 +459,9 @@ Restauration du snapshot.
 #### Suppression
 
 1. vérification de la sélection
-
 2. comptage des dépendances
-
 3. message utilisateur
-
 4. suppression
-
 5. rechargement de la grille
 
 
@@ -547,15 +510,10 @@ Scrollbars verticales
 *support de texte enrichi :*
 
 - gras
-
 - italique
-
 - souligné
-
 - listes
-
 - tabulations
-
 
 *Stockage prévu :*
 

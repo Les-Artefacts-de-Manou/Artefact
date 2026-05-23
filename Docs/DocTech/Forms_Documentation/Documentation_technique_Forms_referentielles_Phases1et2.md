@@ -140,7 +140,7 @@ MariaDB
 
 | Contrôle         | Champ DB       |
 | ---------------- | -------------- |
-| `dgvLangues`     | —              |
+| `dgvLangues`     | -              |
 | `txtIdLangue`    | `id_langue`    |
 | `txtCodeLangue`  | `code_langue`  |
 | `txtNomLangue`   | `nom_langue`   |
@@ -194,7 +194,7 @@ MariaDB
 
 | Contrôle      | Champ DB    |
 | ------------- | ----------- |
-| `dgvPays`     | —           |
+| `dgvPays`     | -           |
 | `txtIdPays`   | `id_pays`   |
 | `txtCodePays` | `code_pays` |
 | `txtNomPays`  | `nom_pays`  |
@@ -259,8 +259,8 @@ MariaDB
 
 | Contrôle                  | Champ DB          |
 | ------------------------- | ----------------- |
-| `dgvRefEnumTypes`         | —                 |
-| `dgvRefEnumValeurs`       | —                 |
+| `dgvRefEnumTypes`         | -                 |
+| `dgvRefEnumValeurs`       | -                 |
 | `txtIdEnumType`           | `id_enum_type`    |
 | `txtCodeEnumType`         | `code_enum_type`  |
 | `txtCodeType`             | `code_type`       |
@@ -337,7 +337,7 @@ MariaDB
 
 | Contrôle            | Champ DB          |
 | ------------------- | ----------------- |
-| `dgvContacts`       | —                 |
+| `dgvContacts`       | -                 |
 | `txtIdContact`      | `id_contact`      |
 | `txtCodeContact`    | `code_contact`    |
 | `txtNomContact`     | `nom_contact`     |
@@ -399,14 +399,14 @@ MariaDB
 
 | Contrôle          | Champ DB                  |
 | ----------------- | ------------------------- |
-| `dgvEditeurs`     | —                         |
+| `dgvEditeurs`     | -                         |
 | `txtIdEditeur`    | `id_editeur`              |
 | `txtCodeEditeur`  | `code_editeur`            |
 | `txtNomEditeur`   | `nom_editeur`             |
 | `cboPaysEditeur`  | `id_pays`                 |
 | `txtSiteWeb`      | `site_web`                |
 | `rtbNotesEditeur` | `notes_editeur_rtf / txt` |
-| `chkSearchNotes`  | —                         |
+| `chkSearchNotes`  | -                         |
 
 ## GestionReferentiel
 
@@ -462,7 +462,7 @@ MariaDB
 
 | Contrôle             | Champ DB          |
 | -------------------- | ----------------- |
-| `dgvFormatFile`      | —                 |
+| `dgvFormatFile`      | -                 |
 | `txtIdFormatFile`    | `id_formatFile`   |
 | `txtCodeFormatFile`  | `code_formatFile` |
 | `txtNomFormat`       | `nom_format`      |
@@ -525,7 +525,7 @@ MariaDB
 
 | Contrôle                   | Champ DB                 |
 | -------------------------- | ------------------------ |
-| `dgvImpression`            | —                        |
+| `dgvImpression`            | -                        |
 | `txtIdImpression`          | `id_impression`          |
 | `txtCodeImpression`        | `code_impression`        |
 | `txtNomImpression`         | `nom_impression`         |
@@ -533,7 +533,7 @@ MariaDB
 | `rtbNoteImpression`        | `note_rtf / txt`         |
 | `txtEnvieCal`              | `envie_Cal`              |
 | `chkImpressionActive`      | `is_actif`               |
-| `chkSearchNotes`           | —                        |
+| `chkSearchNotes`           | -                        |
 
 ## GestionReferentiel
 
@@ -597,8 +597,8 @@ MariaDB
 
 | Contrôle                          | Champ DB                         |
 | --------------------------------- | -------------------------------- |
-| `dgvOriginesRecommandation`       | —                                |
-| `dgvRecommandations`              | —                                |
+| `dgvOriginesRecommandation`       | -                                |
+| `dgvRecommandations`              | -                                |
 | `txtIdOrigineRecommandation`      | `id_origine_recommandation`      |
 | `txtCodeOrigineRecommandation`    | `code_origine_recommandation`    |
 | `txtLibelleOrigineRecommandation` | `libelle_origine_recommandation` |
@@ -607,15 +607,15 @@ MariaDB
 | `txtIdRecommandation`             | `id_recommandation`              |
 | `txtCodeRecommandation`           | `code_recommandation`            |
 | `cboOrigineRecommandation`        | `id_origine_recommandation`      |
-| `cboFiltreOrigineRecommandation`  | —                                |
+| `cboFiltreOrigineRecommandation`  | -                                |
 | `txtSourceNom`                    | `source_nom`                     |
 | `txtSourceLogin`                  | `source_login`                   |
 | `txtSourceUrl`                    | `source_url`                     |
 | `dtpDateRecommandation`           | `date_recommandation`            |
 | `rtbCommentaireRecommandation`    | `commentaire_rtf / txt`          |
 | `chkRecommandationActive`         | `is_actif`                       |
-| `chkSearchNotes`                  | —                                |
-| `chkActifsOnly`                   | —                                |
+| `chkSearchNotes`                  | -                                |
+| `chkActifsOnly`                   | -                                |
 
 ## GestionReferentiel
 
@@ -707,15 +707,15 @@ MariaDB
 
 | Contrôle                       | Champ DB                 |
 | ------------------------------ | ------------------------ |
-| `dgvPrixLit`                   | —                        |
+| `dgvPrixLit`                   | -                        |
 | `txtIdPrixLit`                 | `id_prixLit`             |
 | `txtCodePrixLit`               | `code_prixLit`           |
 | `txtNomPrixLit`                | `nom_prixLit`            |
 | `txtDescriptionPrixLit`        | `description_prixLit`    |
 | `rtbNotesPrixLit`              | `Notes_rtf / txt`        |
 | `chkPrixLitActif`              | `is_actif`               |
-| `chkRechercheDansNotesPrixLit` | —                        |
-| `dgvPrixLitCategorie`          | —                        |
+| `chkRechercheDansNotesPrixLit` | -                        |
+| `dgvPrixLitCategorie`          | -                        |
 | `txtIdPrixLitCategorie`        | `id_prixlit_categorie`   |
 | `txtCodePrixLitCategorie`      | `code_prixlit_categorie` |
 | `cboPrixLitParentCategorie`    | `id_prixLit`             |
@@ -723,13 +723,13 @@ MariaDB
 | `txtDescriptionCategorie`      | `description_categorie`  |
 | `nudOrdreAffichageCategorie`   | `ordre_affichage`        |
 | `chkPrixLitCategorieActif`     | `is_actif`               |
-| `dgvPrixLitAnnee`              | —                        |
+| `dgvPrixLitAnnee`              | -                        |
 | `txtIdPrixLitAnnee`            | `id_prixLit_Annee`       |
 | `txtCodePrixLitAnnee`          | `code_prixLit_Annee`     |
 | `cboPrixLitCategorieAnnee`     | `id_prixlit_categorie`   |
 | `nudAnneePrixLit`              | `annee`                  |
-| `cboFiltrePrixLit`             | —                        |
-| `chkActifsOnly`                | —                        |
+| `cboFiltrePrixLit`             | -                        |
+| `chkActifsOnly`                | -                        |
 
 ------
 

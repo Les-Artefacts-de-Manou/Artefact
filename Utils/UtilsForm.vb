@@ -1,4 +1,4 @@
-﻿'===================================================================================================
+'===================================================================================================
 '📌 UtilsForm V1.4 - Module
 ' Version : V1.0
 ' Date    : 21/02/2026
@@ -6,31 +6,26 @@
 
 'Le Module UtilsForm est une classe utilitaire dédiée à la gestion des formulaires Windows Forms. 
 '===================================================================================================
-
 Imports System.Windows.Forms
 
-Module UtilsForm
+Public Module UtilsForm
 
-    '------------------------------------------------------------
-    ' 📌 V1.0 - 02/03/2026
-    ' ShowFormIfNotOpen
-    '
-    '•	Affiche un formulaire générique de type T uniquement s'il n'est pas déjà ouvert.
-    '•	Si le formulaire est déjà présent dans Application.OpenForms, il est mis au premier plan.
-    '------------------------------------------------------------
-    Public Sub ShowFormIfNotOpen(Of T As {Form, New})()
-        For Each f As Form In Application.OpenForms
-            If TypeOf f Is T Then
-                f.BringToFront()
-                f.Focus()
-                Return
-            End If
-        Next
+    Private ReadOnly StatusInfoColor As Color = Color.SteelBlue
+    Private ReadOnly StatusSuccessColor As Color = Color.ForestGreen
+    Private ReadOnly StatusWarningColor As Color = Color.DarkOrange
+    Private ReadOnly StatusErrorColor As Color = Color.Firebrick
 
-        Dim newForm As New T()
-        newForm.Show()
-    End Sub
+    Private ReadOnly DetailEditForeColor As Color = Color.FromArgb(48, 78, 120)
+    Private ReadOnly EditableBackColor As Color = Color.White
+    Private ReadOnly ReadOnlyBackColor As Color = Color.FromArgb(245, 245, 245)
+    Private ReadOnly EditToolStripBackColor As Color = Color.FromArgb(248, 248, 248)
 
+    Public Enum FormStatusKind
+        Info = 0
+        Success = 1
+        Warning = 2
+        [Error] = 3
+    End Enum
 
     '------------------------------------------------------------
     ' 📌 V1.0 - 02/03/2026
@@ -52,12 +47,27 @@ Module UtilsForm
     ' basé sur le nom de colonne (ex: "id_langue").
     ' Renvoie 0 si aucune sélection valide.
     '------------------------------------------------------------
+    Public Function GetSelectedRowOrNothing(dgv As DataGridView) As DataGridViewRow
+
+        If dgv Is Nothing Then Return Nothing
+
+        If dgv.SelectedRows.Count > 0 Then
+            Return dgv.SelectedRows(0)
+        End If
+
+        If dgv.CurrentRow Is Nothing Then Return Nothing
+
+        Return dgv.CurrentRow
+
+    End Function
+
     Public Function DgvGetSelectedId(dgv As DataGridView, idColumnName As String) As ULong
 
-        If dgv Is Nothing OrElse dgv.CurrentRow Is Nothing Then Return 0UL
+        Dim row As DataGridViewRow = GetSelectedRowOrNothing(dgv)
+        If row Is Nothing Then Return 0UL
         If Not dgv.Columns.Contains(idColumnName) Then Return 0UL
 
-        Dim obj = dgv.CurrentRow.Cells(idColumnName).Value
+        Dim obj As Object = row.Cells(idColumnName).Value
         If obj Is Nothing OrElse obj Is DBNull.Value Then Return 0UL
 
         Dim n As ULong
@@ -433,6 +443,156 @@ Module UtilsForm
         dgv.CurrentCell = dgv.Rows(0).Cells(visibleColumnName)
 
         Return True
+
+    End Function
+
+    Public Sub SetFormStatus(statusLabel As ToolStripStatusLabel, message As String, Optional statusKind As FormStatusKind? = Nothing)
+
+        If statusLabel Is Nothing Then Exit Sub
+
+        Dim safeMessage As String = If(message, "").Trim()
+        If safeMessage = "" Then
+            safeMessage = "Prêt."
+        End If
+
+        Dim resolvedKind As FormStatusKind = If(statusKind.HasValue, statusKind.Value, FormStatusKind.Info)
+
+        statusLabel.Text = safeMessage
+        statusLabel.ForeColor = GetStatusColor(resolvedKind)
+
+    End Sub
+
+    Public Sub ShowCriticalError(owner As IWin32Window,
+                                 statusLabel As ToolStripStatusLabel,
+                                 title As String,
+                                 message As String,
+                                 ex As Exception)
+
+        SetFormStatus(statusLabel, message, FormStatusKind.Error)
+
+        Dim popupMessage As String = If(message, "").Trim()
+
+        If ex IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(ex.Message) Then
+            popupMessage &= Environment.NewLine & Environment.NewLine & ex.Message.Trim()
+        End If
+
+        MessageBox.Show(owner, popupMessage, title, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+    End Sub
+
+    Public Sub ApplyEditionVisualState(hostForm As Form,
+                                       isEditMode As Boolean,
+                                       btnSave As Button,
+                                       btnCancel As Button,
+                                       btnClose As Button,
+                                       ParamArray detailContainers() As Control)
+
+        If hostForm Is Nothing Then Exit Sub
+
+        hostForm.KeyPreview = True
+        hostForm.AcceptButton = GetDefaultAcceptButton(isEditMode, btnSave)
+
+        If isEditMode AndAlso btnCancel IsNot Nothing AndAlso btnCancel.Enabled Then
+            hostForm.CancelButton = btnCancel
+        ElseIf btnClose IsNot Nothing AndAlso btnClose.Enabled Then
+            hostForm.CancelButton = btnClose
+        Else
+            hostForm.CancelButton = Nothing
+        End If
+
+        If detailContainers Is Nothing Then Exit Sub
+
+        For Each detailContainer As Control In detailContainers
+            ApplyDetailContainerStyle(detailContainer, isEditMode)
+        Next
+
+    End Sub
+
+    Private Sub ApplyDetailContainerStyle(container As Control, isEditMode As Boolean)
+
+        If container Is Nothing Then Exit Sub
+
+        If TypeOf container Is GroupBox Then
+            container.ForeColor = If(isEditMode, DetailEditForeColor, SystemColors.ControlText)
+        End If
+
+        For Each child As Control In container.Controls
+            ApplyControlEditionStyle(child, isEditMode)
+        Next
+
+    End Sub
+
+    Private Sub ApplyControlEditionStyle(control As Control, isEditMode As Boolean)
+
+        If control Is Nothing Then Exit Sub
+
+        Select Case True
+            Case TypeOf control Is TextBox
+                Dim txt As TextBox = DirectCast(control, TextBox)
+                Dim isEditable As Boolean = txt.Visible AndAlso txt.Enabled AndAlso Not txt.ReadOnly
+
+                txt.BackColor = If(isEditable, EditableBackColor, ReadOnlyBackColor)
+                txt.TabStop = isEditable
+
+            Case TypeOf control Is RichTextBox
+                Dim rtb As RichTextBox = DirectCast(control, RichTextBox)
+                Dim isEditable As Boolean = rtb.Visible AndAlso rtb.Enabled AndAlso Not rtb.ReadOnly
+
+                rtb.BackColor = If(isEditable, EditableBackColor, ReadOnlyBackColor)
+                rtb.TabStop = isEditable
+
+            Case TypeOf control Is ComboBox
+                Dim cbo As ComboBox = DirectCast(control, ComboBox)
+                Dim isEditable As Boolean = cbo.Visible AndAlso cbo.Enabled
+
+                cbo.BackColor = If(isEditable, EditableBackColor, ReadOnlyBackColor)
+                cbo.TabStop = isEditable
+
+            Case TypeOf control Is NumericUpDown
+                Dim nud As NumericUpDown = DirectCast(control, NumericUpDown)
+                Dim isEditable As Boolean = nud.Visible AndAlso nud.Enabled AndAlso Not nud.ReadOnly
+
+                nud.BackColor = If(isEditable, EditableBackColor, ReadOnlyBackColor)
+                nud.TabStop = isEditable
+
+            Case TypeOf control Is DateTimePicker
+                Dim dtp As DateTimePicker = DirectCast(control, DateTimePicker)
+                dtp.TabStop = dtp.Visible AndAlso dtp.Enabled
+
+            Case TypeOf control Is CheckBox OrElse TypeOf control Is RadioButton
+                control.TabStop = control.Visible AndAlso control.Enabled
+
+            Case TypeOf control Is ToolStrip
+                control.BackColor = If(isEditMode, EditToolStripBackColor, SystemColors.Control)
+        End Select
+
+        For Each child As Control In control.Controls
+            ApplyControlEditionStyle(child, isEditMode)
+        Next
+
+    End Sub
+
+    Private Function GetDefaultAcceptButton(isEditMode As Boolean, btnSave As Button) As Button
+
+        If Not isEditMode Then Return Nothing
+        If btnSave Is Nothing OrElse Not btnSave.Enabled Then Return Nothing
+
+        Return btnSave
+
+    End Function
+
+    Private Function GetStatusColor(statusKind As FormStatusKind) As Color
+
+        Select Case statusKind
+            Case FormStatusKind.Success
+                Return StatusSuccessColor
+            Case FormStatusKind.Warning
+                Return StatusWarningColor
+            Case FormStatusKind.Error
+                Return StatusErrorColor
+            Case Else
+                Return StatusInfoColor
+        End Select
 
     End Function
 

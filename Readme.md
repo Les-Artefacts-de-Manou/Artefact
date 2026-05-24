@@ -132,12 +132,12 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 
 <img src="Docs/Images/Tableau_Solution.png" alt="ArchitectureSolution" style="zoom:70%;" />  
 
-###  	1. Forms
+###  	1. Forms / UserControls
 
    #####         📂 Forms_Menu 
 *Contient le menu principal et la navigation vers les différentes fonctionnalités de l’application.* 
 
-- `home` : Menu principal avec accès à toutes les fonctionnalités. Form d'ouverture par défaut.
+- `PortailReferentiels` : Menu principal et coque de navigation. Form d'ouverture par défaut.
 
 #####        📂 Forms_Config 
 *Contient les formulaires de configuration et de paramétrage de l’application.*
@@ -145,17 +145,11 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 - `GestionConnexionMariaDb` : Formulaire de gestion de configuration de la connexion à la base de données, avec test de connexion intégré et sauvegarde des paramètres locaux chiffrés.
 
 #####       📂 Forms_Referentiels
-*Contient les formulaires de gestion des référentiels de l’application, tels que les langues, les auteurs, les pays, etc.*
+*Contient la gestion référentielle en mode UserControl (UC) + coque de contexte/navigation.*
 
-- `GestionLangues` :  Formulaire de gestion du référentiel des langues, avec consultation, modification, validation et annulation.
-- `GestionPays` : Formulaire de gestion de référentiel des pays, avec consultation, modification, validation et annulation.
-- `GestionRefEnum` : Formulaire de gestion  des énumération des référentiels, avec consultation, modification, validation et annulation.
-- `GestionContacts` : Formulaire de gestion des contacts (envoi de livres), avec consultation, modification, validation et annulation.
-- `GestionEditeurs` : Formulaire de gestion des éditeurs, avec consultation, modification, validation et annulation.
-- `GestionFormatFile` : Formulaire de gestion des formats de fichiers, avec consultation, modification, validation et annulation.
-- `GestionImpression` : Formulaire de gestion des impressions, avec consultation, modification, validation et annulation.
-- `GestionRecommandations` : Formulaire de gestion des recommandations, avec consultation, modification, validation et annulation.
-- `GestionPrixLit` : Formulaire de gestion des prix littéraires, avec consultation, modification, validation et annulation.
+- `UC_Langues` : UserControl natif du référentiel langues.
+- `UC_Pays`, `UC_RefEnum`, `UC_Contacts`, `UC_Editeurs`, `UC_FormatFile`, `UC_Impression`, `UC_Recommandations`, `UC_PrixLit` : UC de portail avec coque standard (contexte, navigation, tooltip, errProvider partagé).
+- `UC_LegacyReferentielHost` : composant technique de transition fournissant une coque UC standard (titre, retour accueil, contexte/statut).
 
 ### 	2. Classes
 #####         📂 Core 
@@ -241,7 +235,7 @@ La base de données ne doit jamais être nécessaire pour établir la première 
 
 ### 🏁 Flux de démarrage
 
-1. `Home` s’ouvre en mode verrouillé.
+1. `PortailReferentiels` s’ouvre en mode verrouillé.
 2. Lecture du fichier JSON local.
 3. Tentative de connexion MariaDB.
 4. Si connexion OK → activation de la navigation.
@@ -380,7 +374,7 @@ Le référentiel `Langues` constitue le modèle de référence pour tous les fut
 - TableLayoutPanel privilégié pour stabilité du Designer.
 - SplitContainer exclu (bug)
 - Tous les référentiels utilisent désormais :
-- Une structure Form identique.
+- Une structure UC/coque homogène.
 - Un style DataGridView centralisé.
 - Une gestion des modes uniforme (Consultation / Nouveau / Modification).
 
@@ -581,4 +575,3 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 >
 >
 ---
-

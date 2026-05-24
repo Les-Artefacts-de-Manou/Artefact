@@ -29,7 +29,7 @@ Ce guide permet à une personne (future, externe, ou "moi plus tard") de reprend
 ## 4) Démarrage application
 
 - Ouvrir la solution dans Visual Studio
-- Lancer `Home`
+- Lancer `PortailReferentiels`
 - Vérifier la phase startup : config → connexion DB → compatibilité schéma
 - Si startup KO : corriger connexion avant toute action métier
 
@@ -45,16 +45,17 @@ Ce guide permet à une personne (future, externe, ou "moi plus tard") de reprend
 
 1. Lire `Readme.md`
 2. Lire `Rules.md`
-3. Lire `Process_Artefact.md`
-4. Lire `Database/ModeleDB.md` + `Database/Tableaux_Colonnes.md`
-5. Lire ce guide (`REPRISE.md`)
-6. Relire `TODO.md` pour prioriser le prochain sprint
+3. Lire `ADR_Artefact.md` (pourquoi ces choix ont été faits)
+4. Lire `Process_Artefact.md`
+5. Lire `Database/ModeleDB.md` + `Database/Tableaux_Colonnes.md`
+6. Lire ce guide (`REPRISE.md`)
+7. Relire `TODO.md` pour prioriser le prochain sprint
 
 ## 7) Pièges connus / points de vigilance
 
 - Ne pas injecter de valeurs UI sentinelles en base (ex: "Toutes origines")
-- Respecter le pattern référentiel (Form → GestionReferentiel → QueryModule)
-- Ne pas utiliser SQL inline dans les forms
+- Respecter le pattern référentiel (UC/Form → GestionReferentiel → QueryModule)
+- Ne pas utiliser SQL inline dans les écrans UI
 - Contrôler les dépendances avant suppression référentielle
 - Ne jamais logguer les secrets
 

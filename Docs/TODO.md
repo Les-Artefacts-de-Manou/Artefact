@@ -1,4 +1,4 @@
-# ✅ TODO – Projet Artefact (Module Livres) - MàJ 28/02/2026
+# ✅ TODO – Projet Artefact (Module Livres) - MàJ 24/05/2026
 
 [TOC]
 
@@ -65,11 +65,11 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 - [x] Gestion du path de configuration - création
 
 ### 	🎯🔹 UI
-- [x] Form principale (Menu) : Navigation de base, accès aux différentes fonctionnalités. Création. Complétion au fur et à mesure du développement de l'application
+- [x] Form principale (PortailReferentiels) : Navigation de base, accès aux différentes fonctionnalités. Création. Complétion au fur et à mesure du développement de l'application
 - [x] Form Modèle : avec les contrôles de base pour les forms ==> ToolStripStatus, Panel, lblTitre
 - [ ] Gestion des tables de paramètres
 - [ ] Gestion des fichiers .bat : copie de la base Calibre dans un path dédié
-- [ ] [🎯]  Forms de gestion référentiels (CRUD simples) 
+- [ ] [🎯]  UC de gestion référentiels (CRUD simples) 
   - [x] **Phase 1** : langues, pays, ref_enum, contacts, editeurs, formatfile, impression, 
   - [ ] [🎯] **Phase 2** :
     - [x] recommandation

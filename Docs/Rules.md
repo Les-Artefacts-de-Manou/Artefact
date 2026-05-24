@@ -221,8 +221,8 @@ ALTER TABLE auteurs
 
 ##### Démarrage de l’application :
 
-- L’application démarre sur la Form `Home`.
-- `Home` constitue le point d’entrée principal vers les modules métier.
+- L’application démarre sur la Form `PortailReferentiels`.
+- `PortailReferentiels` constitue le point d’entrée principal vers les modules métier.
 - La vérification de la connexion MariaDB est effectuée au démarrage via `DatabaseManager`.
 - Aucun accès direct à la base ne doit être réalisé en dehors de `DatabaseManager`.
 
@@ -242,9 +242,9 @@ End Using
 
 ---
 
-### 11. 🧩 **Form modèle obligatoire**
+### 11. 🧩 **Modèle UI obligatoire (Form / UC)**
 
-Toutes les Forms de l’application doivent hériter ou reproduire la structure standard suivante :
+Tous les écrans de l’application (Forms ou UserControls) doivent hériter ou reproduire la structure standard suivante :
 
 ##### Contrôles obligatoires :
 
@@ -269,7 +269,7 @@ pnlForm.Name = "pnlForm"
 
 ##### Structuration UI (Pannelisation obligatoire)
 
-Toutes les Forms doivent être structurées par zones logiques :
+Tous les écrans doivent être structurés par zones logiques :
 - ex:
 - `pnlTop` → Titre / infos générales
 - `pnlActions` → Boutons
@@ -327,7 +327,7 @@ Chaque Sub ou Function doit comporter :
 ' Retourne une connexion MariaDB ouverte.
 ' Initialise la chaîne de connexion si nécessaire.
 '
-' Appelé par : Home_Load, ConfigManager
+' Appelé par : PortailReferentiels_Load, ConfigManager
 '------------------------------------------------------------
 Public Shared Function GetConnexionMariaDB() As MySqlConnection
 ```
@@ -709,7 +709,7 @@ Cette règle est particulièrement importante pour les référentiels fortement 
 
 #### 12. Synchronisation DataGridView / Détails
 
-Dans les forms de gestion référentielle utilisant une DataGridView :
+Dans les écrans de gestion référentielle utilisant une DataGridView :
 
 - La ligne courante doit être déterminée à partir de `DataGridView.CurrentRow`.
 - L’utilisation de `SelectedRows(0)` doit être évitée pour la synchronisation des détails.
@@ -766,7 +766,7 @@ Toute manipulation RichText doit passer par :
 `RichTextNotesHelper`
 
 Interdictions :
-- manipulation directe du RTF dans les forms
+- manipulation directe du RTF dans les écrans UI
 - duplication de logique
 
 #### ComboBox (critique)

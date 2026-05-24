@@ -16,7 +16,7 @@ Le démarrage est bloquant : sans DB valide, l’application ne peut pas fonctio
 
 ## 🧭 Vue d’ensemble du flow
 
-1. Home.Load déclenche `RunStartupFlow()`
+1. PortailReferentiels.Load déclenche `RunStartupFlow()`
 2. UI verrouillée
 3. AppStartupManager.RunStartup()
    - Lecture config JSON
@@ -90,7 +90,7 @@ Si statut `Ok` :
 
 - Aucune MsgBox dans AppStartupManager
 - Tous les détails techniques passent par GestionLog
-- Home est responsable de l’UI
+- PortailReferentiels est responsable de l’UI
 - StartupManager est responsable de l’orchestration
 - DatabaseManager est responsable des accès DB
 
@@ -107,7 +107,7 @@ Si statut `Ok` :
 
 ```mermaid
 flowchart TD
-     A["Home.Load"] --> B["Lock UI"]
+     A["PortailReferentiels.Load"] --> B["Lock UI"]
     B --> C["RunStartup()"]
 
     C --> D["LireConfigDb()"]
@@ -343,16 +343,16 @@ Region "TABLE - CRUD"
 
 ### 3️⃣ Formulaire de gestion
 
-Chaque référentiel possède un formulaire dédié :
+Chaque référentiel possède un écran dédié (UC) :
 
 ```
-GestionLangues
-GestionEditeurs
-GestionFormatFile
-GestionImpression
+UC_Langues
+UC_Editeurs
+UC_FormatFile
+UC_Impression
 ```
 
-**La Form :**
+**L’écran UI :**
 
 - ne contient aucun SQL
 
@@ -367,9 +367,9 @@ GestionImpression
 - la logique CRUD
 
 
-## 🧩 Structure standard d’une Form référentielle
+## 🧩 Structure standard d’un écran référentiel
 
-Chaque Form suit strictement la même organisation.
+Chaque écran suit strictement la même organisation.
 
 1. Déclarations
 2. Initialisation
@@ -581,7 +581,7 @@ doit être adaptée.
 
 ```mermaid
 flowchart TD
-A["Open GestionReferentiel Form"] --> B["LoadGrid()"]
+A["Open UC_Referentiel"] --> B["LoadGrid()"]
 B --> C["SELECT All"]
 
 C --> D{"Rows present ?"}
@@ -726,7 +726,7 @@ La recherche permet :
 
 ```mermaid
 flowchart TD
-A["Open GestionRecommandations"] --> B["LoadOrigines()"]
+A["Open UC_Recommandations"] --> B["LoadOrigines()"]
 B --> C["Bind origine sélectionnée"]
 C --> D["Sync cboOrigineRecommandation"]
 D --> E["LoadRecommandations()"]
@@ -894,7 +894,7 @@ Recherche locale selon le niveau :
 
 ```mermaid
 flowchart TD
-A["Open GestionPrixLit"] --> B["Load Filtre + Combos"]
+A["Open UC_PrixLit"] --> B["Load Filtre + Combos"]
 B --> C["Load PrixLit"]
 C --> D["Bind PrixLit sélectionné"]
 D --> E["Load Categories"]

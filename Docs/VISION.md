@@ -13,7 +13,7 @@ Après des années d'usage de Calibre et des milliers de livres référencés, j
 Artefact vise une bibliothèque numérique "augmentée" :
 
 - solide côté données (modèle clair, intégrité, traçabilité)
-- fluide côté usage (navigation simple, forms homogènes)
+- fluide côté usage (navigation simple, écrans UC homogènes)
 - riche côté contenu (notes, recommandations, contexte de lecture)
 - assistée par l'IA pour accélérer sans déposséder l'utilisateur
 
@@ -60,6 +60,7 @@ Principe directeur : **IA utile, traçable et toujours contrôlable**.
 ## Documents associés
 
 - [Readme.md](../Readme.md)
+- [ADR_Artefact.md](ADR_Artefact.md)
 - [Rules.md](Rules.md)
 - [Process_Artefact.md](Process_Artefact.md)
 - [ModeleDB.md](Database/ModeleDB.md)

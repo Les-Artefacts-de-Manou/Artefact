@@ -28,7 +28,7 @@ Code lisible généré automatiquement, non utilisé comme clé étrangère.
 Table de versionnement du schéma Artefact utilisée au démarrage de l'application.
 
 ### `ModeEdition`
-Enum standard des forms référentielles : Consultation / Nouveau / Modification.
+Enum standard des écrans référentiels (UC/Form) : Consultation / Nouveau / Modification.
 
 ### snapshot
 Copie de l'état courant d'un enregistrement pour permettre un `Annuler` fiable en mode modification.

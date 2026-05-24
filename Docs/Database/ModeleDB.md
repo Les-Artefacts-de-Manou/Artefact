@@ -2,6 +2,8 @@
 
 [TOC]
 
+> Mise à jour du 24/05/2026 : aucun changement de schéma DB lié à la migration UI (passage Home/Forms vers portail + UC).
+
 ---
 
 ## 🧠 Principes fondateurs

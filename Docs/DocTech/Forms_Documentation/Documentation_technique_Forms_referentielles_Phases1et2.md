@@ -1,4 +1,4 @@
-# 📘 Documentation technique – Forms référentielles - Phases 1 & 2
+# 📘 Documentation technique – UC référentielles - Phases 1 & 2
 
 [TOC]
 
@@ -7,7 +7,7 @@
 1. Créer la classe métier `Xxx` dans `Classes/Referentiels`
 2. Ajouter les requêtes SQL `Xxx_*` dans `QueryModule`
 3. Ajouter les méthodes CRUD `Xxx_*` dans `GestionReferentiel`
-4. Créer la Form `GestionXxx` avec structure standard (`pnlTop`, `tlpMain`, `pnlActions`, `stsStatus`)
+4. Créer l’UC `UC_Xxx` avec structure standard (`pnlTop`, `tlpMain`, `pnlActions`, `stsStatus`)
 5. Implémenter modes `Consultation / Nouveau / Modification`
 6. Implémenter `SelectionChanged` + `BindSelectedToDetails()`
 7. Implémenter validation locale (`errProvider`) + statut global (`StatusStrip`)
@@ -17,11 +17,11 @@
 
 ## 1. Objectif
 
-Ce document décrit la structure technique et fonctionnelle des forms référentielles d’Artefact.
+Ce document décrit la structure technique et fonctionnelle des UC référentielles d’Artefact.
 
 Il permet de comprendre :
 
-- le rôle de chaque form
+- le rôle de chaque UC
 - les tables concernées
 - les classes métier associées
 - les modules impliqués
@@ -35,7 +35,7 @@ Il permet de comprendre :
 ### 2.1 Séparation des responsabilités
 
 ```
-Form UI
+UC UI
    ↓
 GestionReferentiel
    ↓
@@ -115,11 +115,11 @@ MariaDB
 
 ------
 
-## 4. Forms
+## 4. UserControls
 
 ------
 
-# 4.1 GestionLangues
+# 4.1 UC_Langues
 
 ## Tables
 
@@ -170,11 +170,11 @@ MariaDB
 | `Langue_Delete`           | suppression    |
 | `Langue_CountDependances` | dépendances    |
 
-###### GestionLangues
+###### UC_Langues
 
-<img src="Images/GestionLangues.png" alt="GestionLangues" style="zoom:70%;" />
+<img src="Images/UC_Langues.png" alt="UC_Langues" style="zoom:70%;" />
 
-# 4.2 GestionPays
+# 4.2 UC_Pays
 
 ## Tables
 
@@ -223,11 +223,11 @@ MariaDB
 | `Pays_Delete`           | delete    |
 | `Pays_CountDependances` | usages    |
 
-###### GestionPays
+###### UC_Pays
 
-<img src="Images/GestionPays.png" alt="GestionPays" style="zoom:70%;" />
+<img src="Images/UC_Pays.png" alt="UC_Pays" style="zoom:70%;" />
 
-# 4.3 GestionRefEnum
+# 4.3 UC_RefEnum
 
 ## Tables
 
@@ -303,15 +303,15 @@ MariaDB
 | `RefEnum_Delete`           | delete  |
 | `RefEnum_CountDependances` | usages  |
 
-###### GestionRefEnum - Tab Types Enum
+###### UC_RefEnum - Tab Types Enum
 
-<img src="Images/GestionRefEnum_1.png" alt="GestionRefEnum 1" style="zoom:70%;" />
+<img src="Images/UC_RefEnum_1.png" alt="UC_RefEnum 1" style="zoom:70%;" />
 
-###### GestionRefEnum - Tab Valeurs Enum
+###### UC_RefEnum - Tab Valeurs Enum
 
-<img src="Images/GestionRefEnum_2.png" alt="GestionRefEnum 2" style="zoom:70%;" />
+<img src="Images/UC_RefEnum_2.png" alt="UC_RefEnum 2" style="zoom:70%;" />
 
-# 4.4 GestionContacts
+# 4.4 UC_Contacts
 
 ## Tables
 
@@ -367,11 +367,11 @@ MariaDB
 | `Contact_Delete`         | delete    |
 | `Contact_CountLivres`    | usages    |
 
-###### GestionContacts.png
+###### UC_Contacts.png
 
-<img src="Images/GestionContacts.png" alt="GestionContacts" style="zoom:70%;" />
+<img src="Images/UC_Contacts.png" alt="UC_Contacts" style="zoom:70%;" />
 
-# 4.5 GestionEditeurs
+# 4.5 UC_Editeurs
 
 ## Tables
 
@@ -430,11 +430,11 @@ MariaDB
 | `Editeur_Delete`         | delete    |
 | `Editeur_CountLivres`    | usages    |
 
-###### GestionEditeurs
+###### UC_Editeurs
 
-<img src="Images/GestionEditeurs.png" alt="GestionEditeurs" style="zoom:70%;" />
+<img src="Images/UC_Editeurs.png" alt="UC_Editeurs" style="zoom:70%;" />
 
-# 4.6 GestionFormatFile
+# 4.6 UC_FormatFile
 
 ## Tables
 
@@ -493,11 +493,11 @@ MariaDB
 | `FormatFile_Delete`              | delete    |
 | `FormatFile_CountLivresFichiers` | usages    |
 
-###### GestionFormatFile
+###### UC_FormatFile
 
-<img src="Images/GestionFormatFile.png" alt="GestionFormatFile" style="zoom:70%;" />
+<img src="Images/UC_FormatFile.png" alt="UC_FormatFile" style="zoom:70%;" />
 
-# 4.7 GestionImpression
+# 4.7 UC_Impression
 
 ## Tables
 
@@ -557,11 +557,11 @@ MariaDB
 | `Impression_Delete`         | delete    |
 | `Impression_CountLivres`    | usages    |
 
-###### GestionImpression
+###### UC_Impression
 
-<img src="Images/GestionImpression.png" alt="GestionImpression" style="zoom:70%;" />
+<img src="Images/UC_Impression.png" alt="UC_Impression" style="zoom:70%;" />
 
-# 4.8 GestionRecommandations
+# 4.8 UC_Recommandations
 
 ## Tables
 
@@ -649,15 +649,15 @@ MariaDB
 | `Recommandation_Delete`           | delete    |
 | `Recommandation_CountUsages`      | usages    |
 
-###### GestionRecommandations - Tab Origines
+###### UC_Recommandations - Tab Origines
 
-<img src="Images/GestionRecommandations_1.png" alt="GestionRecommandations 1" style="zoom:70%;" />
+<img src="Images/UC_Recommandations_1.png" alt="UC_Recommandations 1" style="zoom:70%;" />
 
-###### GestionRecommandations - Tab Recommandations
+###### UC_Recommandations - Tab Recommandations
 
-<img src="Images/GestionRecommandations_2.png" alt="GestionRecommandations 2" style="zoom:70%;" />
+<img src="Images/UC_Recommandations_2.png" alt="UC_Recommandations 2" style="zoom:70%;" />
 
-# 4.9 GestionPrixLit
+# 4.9 UC_PrixLit
 
 ## Tables
 
@@ -735,7 +735,7 @@ MariaDB
 
 ## 5. Règles clés
 
-- aucune requête SQL dans les forms
+- aucune requête SQL dans les écrans UI
 - toute donnée passe par `GestionReferentiel`
 - toute requête passe par `QueryModule`
 - toute suppression vérifie les dépendances
@@ -747,7 +747,7 @@ MariaDB
 
 ## 6. Typologie
 
-| Type                 | Forms                                                     |
+| Type                 | UC                                                        |
 | -------------------- | --------------------------------------------------------- |
 | Référentiels simples | Langues, Pays, Contacts, Editeurs, FormatFile, Impression |
 | Parent / enfant      | RefEnum, Recommandations                                  |
@@ -793,18 +793,18 @@ MariaDB
 | `PrixLitAnnee_Delete`            | delete      |
 | `PrixLitAnnee_CountLivres`       | usages      |
 
-###### GestionPrixLit - Tab Prix littéraire
+###### UC_PrixLit - Tab Prix littéraire
 
-<img src="Images/GestionPrixLit_1.png" alt="GestionPrixLit 1" style="zoom:70%;" />
+<img src="Images/UC_PrixLit_1.png" alt="UC_PrixLit 1" style="zoom:70%;" />
 
-###### GestionPrixLit - Tab Categoorie de prix
+###### UC_PrixLit - Tab Categoorie de prix
 
-<img src="Images/GestionPrixLit_2.png" alt="GestionPrixLit 2" style="zoom:70%;" />
+<img src="Images/UC_PrixLit_2.png" alt="UC_PrixLit 2" style="zoom:70%;" />
 
-###### GestionPrixLit - Tab Année
+###### UC_PrixLit - Tab Année
 
 
-<img src="Images/GestionPrixLit_3.png" alt="GestionPrixLit 3" style="zoom:70%;" />
+<img src="Images/UC_PrixLit_3.png" alt="UC_PrixLit 3" style="zoom:70%;" />
 
 
 

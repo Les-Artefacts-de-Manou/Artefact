@@ -2,6 +2,7 @@
 
 Ce document centralise les **champs, types et contraintes visibles dans le script SQL**.
 Il sert de référence de travail pour les tables déjà en place, même si certaines zones fonctionnelles ne sont pas encore stabilisées.
+Mise à jour du 24/05/2026 : pas d’impact sur les colonnes/tables suite au nettoyage UI (Home + anciennes forms).
 
 Source : [`backup_NoData_artefact.sql`](backup_NoData_artefact.sql).
 

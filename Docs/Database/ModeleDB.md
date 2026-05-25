@@ -1,12 +1,8 @@
-# 🏠 Architecture de la base de données Artefact
-
-[TOC]
-
-> Mise à jour du 24/05/2026 : aucun changement de schéma DB lié à la migration UI (passage Home/Forms vers portail + UC).
+# 🏠Architecture de la base de données Artefact
 
 ---
 
-## 🧠 Principes fondateurs
+- ## 🧠 Principes fondateurs
 
 1. Clé primaire numérique unique par table
 2. Aucune clé primaire textuelle
@@ -71,7 +67,7 @@ Tables avec leurs séquences dédiées :
 | Sous-Référentielle | prixlit_annee                  | seq_prixLit_Annee              | id_prixLit_annee                                          | code_prixLit_Annee          |   RA    |
 | Sous-Référentielle | prixlit_categorie              | seq_prixlit_categorie          | id_prixlit_categorie                                      | code_prixlit_categorie      |   RC    |
 | Référentielle      | formatFile                     | seq_formatFile                 | id_formatFile                                             | code_formatFile             |    F    |
-| Référentielle      | recommandations                | seq_recommandations            | id_recommandation                                         | code_recommandation         |    R    |
+| Référentielle      | restauration                   | seq_recommandations            | id_recommandation                                         | code_recommandation         |    R    |
 | Sous-Référentielle | ref_origine_recommandation     | seq_ref_origine_recommandation | id_origine_recommandation                                 | code_origine_recommandation |   OR    |
 | Principale         | livres                         | seq_livres                     | id_livre                                                  | code_livre                  |    B    |
 | Générique          | ref_enum                       | seq_ref_enum                   | id_enum                                                   | code_enum                   |    N    |
@@ -96,9 +92,6 @@ Tables avec leurs séquences dédiées :
 # 📚 Modèle fonctionnel des données
 
 ## TABLES
-
-> ℹ️ Les sections détaillées sont complétées progressivement selon l'avancement fonctionnel.
-> Pour garder une base exploitable dès maintenant, un tableau de colonnes consolidé est maintenu ici : [`Tableaux_Colonnes.md`](Tableaux_Colonnes.md).
 
 ### 1️⃣ Tables principales
 
@@ -1106,3 +1099,21 @@ Table auteurs - date_naissance et annee_naissance - Before update
 - `Diagrammes DB` : [`artefact_schema_erdiagram.mmd`](Docs/Database/artefact_schema_erdiagram.mmd) - Diagrammes de la base de données
 - `Diagramme image` : [`artefact_key.png`](Docs/Database/artefact_key.png) - Diagramme de la base de données au format image
 - `Modèle database`  : [`ModeleDB.md`](Docs/Database/ModeleDB.md) - Description détaillée du modèle de données, des tables, des relations, etc.
+
+---
+---
+
+> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
+>
+> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
+> mailto: `joelle@nguyen.eu`
+>
+> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
+> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
+>
+
+---
+---
+
+[TOC]
+

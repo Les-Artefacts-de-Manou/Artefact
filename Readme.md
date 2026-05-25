@@ -1,13 +1,5 @@
 # 📚 Artefact
-[TOC]
-
 ---
-
-## 🎭 Pourquoi Artefact ?
-
-Artefact est né d'une frustration concrète : après des années d'usage de Calibre et des milliers de livres gérés, certains besoins personnels restaient mal couverts.
-
-Ce projet est à la fois un laboratoire technique, un projet plaisir et une bibliothèque de cœur. L'objectif est de construire une application robuste, élégante et évolutive, qui reste fidèle à ma façon de lire, classer et explorer mes livres.
 
 ## 🧩 Description
 
@@ -19,7 +11,7 @@ Le projet est une **reconstruction volontaire et maîtrisée** d’Artefactothè
 
 L'IA est fortement impliquée pour enrichir les fiches de livres, proposer des recommandations, des nouveautés, les dates de sortie, proposer des news et automatiser certaines tâches de gestion.
 
-Icône Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" width="64" />
+Icone Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" style="zoom:10%;" /> 
 
 ## 🎯 Objectifs
 
@@ -40,12 +32,6 @@ Icône Artefact : <img src="Assets/Icons/Artefact.png" alt="Artefact" width="64"
 
   Documenter chaque décision structurante
 
-## 🤖 Vision IA
-
-L'IA est prévue comme un moteur d'enrichissement progressif : aide au résumé, détection d'incohérences, suggestions de métadonnées, recommandations contextualisées et automatisation de certaines tâches répétitives.
-
-L'objectif n'est pas de remplacer le jugement humain, mais de gagner du temps sur les étapes à faible valeur et de garder l'énergie pour la curation.
-
 ## 🧠 Philosophie générale
 
 Artefact repose sur :
@@ -63,7 +49,7 @@ Artefact repose sur :
 ### 💻 Application
 
 - **Visual Studio Community 2026**
-- Version 18.6.1 (05/26)
+- Version 18.6.0 (05/26)
 - VB.NET
 - .NET 8 LTS
 - Windows Forms
@@ -74,16 +60,11 @@ Artefact repose sur :
 - Charset : `utf8mb4`
 - Collation : `utf8mb4_uca1400_ai_ci`
 - Nom base de données :  `Artefact`
-- Outil : `HeidiSQL 12.17` (21/05/26) 
+
+- Outil : `HeidiSQL 12.17 (24/04/26) 
 	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données et la gestion des schémas.
-- Outil : `DBeaver 26.0.5` (18/05/26)
-	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données, la gestion des schémas et les diagrammes.
-
-###  ⚒️ Outils divers
-
-- `Typora by Appmakes.io 1.13.6` (21/05/26)
-  - Fichiers de documentation Markdown
-
+- Outil : `DBeaver 26.0.4 (10/05/26)
+	- pour la gestion de la base de données MariaDB, l'exécution des requêtes SQL, la visualisation des données et la gestion des schémas.
 
 ### 🏚️ Versioning et sauvegarde
 
@@ -91,9 +72,9 @@ Artefact repose sur :
 
 - pour le contrôle de version et la collaboration
 - https://github.com/AngeljoNG/Artefact (Private) (Mise à jour en continu)
-- https://github.com/Les-Artefacts-de-Manou/Artefact (Public) (Dernière MàJ : 2026-05-22)
+- https://github.com/Les-Artefacts-de-Manou/Artefact (Public) (Dernière MàJ : 2026-03-31)
 
-- Les Artefacts de Manou - AngeljoNG <img src="https://avatars.githubusercontent.com/u/121104000?v=4" width="40" alt="Avatar">
+- Les Artefacts de Manou - AngeljoNG <img src="https://avatars.githubusercontent.com/u/121104000?v=4" alt="img" style="zoom: 10%;" />
 
 ###  ![Calibre](Assets/Icons/Calibre.png)  Calibre 9.8 (01/05/26) (Kovid Goyal) 
 
@@ -104,7 +85,7 @@ la copie du fichier se fait avec 2 fichiers .bat, pour l'instant manuellement, m
 - **Copie du fichier Metadata.db** : 
   - `CopyMetadata.bat` : copie le fichier Metadata.db de Calibre vers le dossier `MDCalibre` sous le nom `metadata_%curdate%.db` et nettoie les anciens fichiers (Voir Paths utilisés dans Artefact, ci-dessous)
   - `ReplaceMyMetadata.bat` : `metadata_%curdate%.db` renommé en `myMetadata.db`
-- **DBBrowser for SQLLite** : V. 3.13.1  - utilisé pour visualiser le fichier `myMetadata.db` de Calibre. Il permet d'explorer les tables, afin de faciliter l'importation des données déjà implémentées dans Calibre, données en SQLite.
+- **DBBrowser for SQLLite** : utilisé pour visualiser le fichier `myMetadata.db` de Calibre. Il permet d'explorer les tables, afin de faciliter l'importation des données déjà implémentées dans Calibre, données en SQLite.
 
 ### 📂 Packages et bibliothèques
 
@@ -125,6 +106,7 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 - Aucune connexion ouverte manuellement ailleurs
 - Utilisation systématique du bloc `Using`
 - Pooling ADO.NET activé
+- 
 
 ---
 
@@ -132,12 +114,12 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 
 <img src="Docs/Images/Tableau_Solution.png" alt="ArchitectureSolution" style="zoom:70%;" />  
 
-###  	1. Forms / UserControls
+###  	1. Forms
 
    #####         📂 Forms_Menu 
 *Contient le menu principal et la navigation vers les différentes fonctionnalités de l’application.* 
 
-- `PortailReferentiels` : Menu principal et coque de navigation. Form d'ouverture par défaut.
+- `home` : Menu principal avec accès à toutes les fonctionnalités. Form d'ouverture par défaut.
 
 #####        📂 Forms_Config 
 *Contient les formulaires de configuration et de paramétrage de l’application.*
@@ -145,11 +127,17 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
 - `GestionConnexionMariaDb` : Formulaire de gestion de configuration de la connexion à la base de données, avec test de connexion intégré et sauvegarde des paramètres locaux chiffrés.
 
 #####       📂 Forms_Referentiels
-*Contient la gestion référentielle en mode UserControl (UC) + coque de contexte/navigation.*
+*Contient les formulaires de gestion des référentiels de l’application, tels que les langues, les auteurs, les pays, etc.*
 
-- `UC_Langues` : UserControl natif du référentiel langues.
-- `UC_Pays`, `UC_RefEnum`, `UC_Contacts`, `UC_Editeurs`, `UC_FormatFile`, `UC_Impression`, `UC_Recommandations`, `UC_PrixLit` : UC de portail avec coque standard (contexte, navigation, tooltip, errProvider partagé).
-- `UC_LegacyReferentielHost` : composant technique de transition fournissant une coque UC standard (titre, retour accueil, contexte/statut).
+- `GestionLangues` :  Formulaire de gestion du référentiel des langues, avec consultation, modification, validation et annulation.
+- `GestionPays` : Formulaire de gestion de référentiel des pays, avec consultation, modification, validation et annulation.
+- `GestionRefEnum` : Formulaire de gestion  des énumération des référentiels, avec consultation, modification, validation et annulation.
+- `GestionContacts` : Formulaire de gestion des contacts (envoi de livres), avec consultation, modification, validation et annulation.
+- `GestionEditeurs` : Formulaire de gestion des éditeurs, avec consultation, modification, validation et annulation.
+- `GestionFormatFile` : Formulaire de gestion des formats de fichiers, avec consultation, modification, validation et annulation.
+- `GestionImpression` : Formulaire de gestion des impressions, avec consultation, modification, validation et annulation.
+- `GestionRecommandations` : Formulaire de gestion des recommandations, avec consultation, modification, validation et annulation.
+- `GestionPrixLit` : Formulaire de gestion des prix littéraires, avec consultation, modification, validation et annulation.
 
 ### 	2. Classes
 #####         📂 Core 
@@ -213,12 +201,31 @@ Artefact utilise le package **MySqlConnector** pour la connexion MariaDB sous .N
    #####        📂 Form_Basique
 <img src="Docs/Images/Form_Modele._Plus.png" alt="FormModele" style="zoom:70%;" />
 
-
   #####        📂 Forms_Documentation
-- Documentation détaillée de chaque formulaire, avec les processus métier, les règles de gestion, les processus de validation, les messages utilisateur, etc.	: 
-	- [`Documentation_technique_Forms_referentielles_Phases1et2.md`](Docs/DocTech/Forms_Documentation/Documentation_technique_Forms_referentielles_Phases1et2.md)
+- Documentation détaillée de chaque formulaire, avec les processus métier, les règles de gestion, les	
 
 ___
+
+## 🚦 Flux de démarrage (Boot) — Connexion MariaDB
+
+Artefact établit la connexion MariaDB via une configuration locale chiffrée (DPAPI) stockée dans un fichier JSON.
+L’objectif est d’éviter toute dépendance circulaire et de ne jamais stocker de mot de passe en clair.
+
+#### 📂 Configuration locale
+
+- Fichier : `%APPDATA%\Artefact\artefact.local.json`
+- Contenu : host, port, database, user, options + mot de passe chiffré DPAPI (Base64)
+- Le mot de passe est chiffré avec DPAPI (CurrentUser) :
+  - Lisible uniquement par le même utilisateur Windows
+  - Non portable tel quel vers une autre machine (comportement normal)
+
+#### 🧠 Principes
+
+- La configuration DB nécessaire au démarrage ne dépend pas de la base.
+- `DatabaseManager` construit la connexion uniquement depuis la configuration locale.
+- La navigation applicative reste verrouillée tant que la connexion DB n’est pas validée.
+
+---
 
 ## 🚀 Démarrage & Connexion MariaDB
 
@@ -235,7 +242,7 @@ La base de données ne doit jamais être nécessaire pour établir la première 
 
 ### 🏁 Flux de démarrage
 
-1. `PortailReferentiels` s’ouvre en mode verrouillé.
+1. `Home` s’ouvre en mode verrouillé.
 2. Lecture du fichier JSON local.
 3. Tentative de connexion MariaDB.
 4. Si connexion OK → activation de la navigation.
@@ -374,7 +381,7 @@ Le référentiel `Langues` constitue le modèle de référence pour tous les fut
 - TableLayoutPanel privilégié pour stabilité du Designer.
 - SplitContainer exclu (bug)
 - Tous les référentiels utilisent désormais :
-- Une structure UC/coque homogène.
+- Une structure Form identique.
 - Un style DataGridView centralisé.
 - Une gestion des modes uniforme (Consultation / Nouveau / Modification).
 
@@ -429,6 +436,32 @@ Cela garantit :
 ⚠️ Important :
 
 Si une nouvelle table est ajoutée et référence un référentiel existant (ex. `ref_enum`), il est impératif de mettre à jour le système de contrôle de suppression afin d’intégrer cette nouvelle dépendance.
+
+## Gestion des notes enrichies
+
+Artefact utilise un système standardisé pour les champs de notes nécessitant une mise en forme.
+
+Les notes sont éditées via un contrôle `RichTextBox` permettant :
+
+- gras
+- italique
+- souligné
+- listes
+- tabulations
+
+Le contenu est stocké dans la base sous deux formes :
+
+- **RTF** pour conserver la mise en forme
+- **texte brut miroir** pour permettre les recherches SQL
+
+Ce mécanisme est destiné à être réutilisé dans plusieurs référentiels de l'application :
+- éditeurs
+- auteurs
+- séries
+- tags
+- éventuellement livres
+
+Ce choix permet d'offrir un système de notes enrichies tout en conservant des performances de recherche simples côté base de données.
 
 ---
 
@@ -498,11 +531,9 @@ Chaque champ de notes est stocké dans deux colonnes :
 - Le texte brut n'est jamais utilisé pour l'affichage riche
 - Toute manipulation passe par le helper
 
-Ce choix permet d'offrir un système de notes enrichies tout en conservant des performances de recherche simples côté base de données.
-
 ---
 
-## ⚠️ Attention - Valeurs UI vs Métier
+## ⚠️ Attention — Valeurs UI vs Métier
 
 Les contrôles UI (ex: ComboBox avec "Toutes origines") ne doivent jamais injecter de valeurs non métier en base.
 
@@ -548,23 +579,17 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 - `Rules` : [`Rules.md`](Docs/Rules.md) - Règles de codage, bonnes pratiques et conventions à suivre
 - `Processus Artefact` : [`Process_Artefact.md`](Docs/Process_Artefact.md) - Description des processus métier, des flux de données et des règles de gestion
 - `TODO` : [`TODO.md`](Docs/TODO.md) - Liste des tâches à réaliser et des améliorations prévues
-- `Backup Database Artefact sans données` : [`backup_NoData_artefact.sql`](Docs/Database/backup_NoData_artefact.sql) - Backup de la base de données MariaDB sans données, pour initialiser le projet
+- `Backup Database Artefact sans données` : [`backup_NoData_artefact.sql`](Docs/Database/backup_NoData_artefact.sql) - Backup de la base de données SQLite sans données, pour initialiser le projet
 - `Backup Database Artefact avec données` : [`backup_WithData_artefact.sql`](Docs/Database/backup_WithData_artefact.sql) -  Pour les données de base (Tests)
 - `Diagrammes DB` : [`artefact_schema_erdiagram.mmd`](Docs/Database/artefact_schema_erdiagram.mmd) - Diagrammes de la base de données
 - `Diagramme image` : [`artefact_key.png`](Docs/Database/artefact_key.png) - Diagramme de la base de données au format image
 - `Modèle database`  : [`ModeleDB.md`](Docs/Database/ModeleDB.md) - Description détaillée du modèle de données, des tables, des relations, etc.
 - `Documentation Technique : Forms référentielles Phase 1 et 2`  : [`Documentation_technique_Forms_referentielles_Phases1et2.md`](Docs/DocTech/Forms_Documentation/Documentation_technique_Forms_referentielles_Phases1et2.md) - Documentation technique des forms référentielles, phases 1 et 2
-- `Vision produit` : [`VISION.md`](Docs/VISION.md) - Vision, intention produit et ADN du projet
-- `Guide de reprise` : [`REPRISE.md`](Docs/REPRISE.md) - Démarrage rapide pour reprendre le projet proprement
-- `Glossaire` : [`GLOSSAIRE.md`](Docs/GLOSSAIRE.md) - Définitions des termes métier et techniques du projet
-- `Tableaux de colonnes DB` : [`Tableaux_Colonnes.md`](Docs/Database/Tableaux_Colonnes.md) - Vue consolidée des champs/types/contraintes table par table
-
----
-
 
 
 ---
->
+---
+
 > **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
 >
 > Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
@@ -573,5 +598,9 @@ Toute valeur utilisée en base doit être valide et cohérente avec les contrain
 > - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
 > - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
 >
->
+
 ---
+---
+
+[TOC]
+

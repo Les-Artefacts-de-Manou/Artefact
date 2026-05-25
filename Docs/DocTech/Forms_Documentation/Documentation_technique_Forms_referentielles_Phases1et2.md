@@ -1,27 +1,12 @@
-# 📘 Documentation technique – UC référentielles - Phases 1 & 2
-
-[TOC]
-
-## 0. Checklist – Créer un nouveau référentiel
-
-1. Créer la classe métier `Xxx` dans `Classes/Referentiels`
-2. Ajouter les requêtes SQL `Xxx_*` dans `QueryModule`
-3. Ajouter les méthodes CRUD `Xxx_*` dans `GestionReferentiel`
-4. Créer l’UC `UC_Xxx` avec structure standard (`pnlTop`, `tlpMain`, `pnlActions`, `stsStatus`)
-5. Implémenter modes `Consultation / Nouveau / Modification`
-6. Implémenter `SelectionChanged` + `BindSelectedToDetails()`
-7. Implémenter validation locale (`errProvider`) + statut global (`StatusStrip`)
-8. Mettre à jour `Rules.md`, `Process_Artefact.md` et `CHANGELOG.md`
-
-------
+# 📘 Documentation technique – Forms référentielles - Phases 1 & 2
 
 ## 1. Objectif
 
-Ce document décrit la structure technique et fonctionnelle des UC référentielles d’Artefact.
+Ce document décrit la structure technique et fonctionnelle des forms référentielles d’Artefact.
 
 Il permet de comprendre :
 
-- le rôle de chaque UC
+- le rôle de chaque form
 - les tables concernées
 - les classes métier associées
 - les modules impliqués
@@ -35,7 +20,7 @@ Il permet de comprendre :
 ### 2.1 Séparation des responsabilités
 
 ```
-UC UI
+Form UI
    ↓
 GestionReferentiel
    ↓
@@ -115,11 +100,11 @@ MariaDB
 
 ------
 
-## 4. UserControls
+## 4. Forms
 
 ------
 
-# 4.1 UC_Langues
+# 4.1 GestionLangues
 
 ## Tables
 
@@ -140,7 +125,7 @@ MariaDB
 
 | Contrôle         | Champ DB       |
 | ---------------- | -------------- |
-| `dgvLangues`     | -              |
+| `dgvLangues`     | —              |
 | `txtIdLangue`    | `id_langue`    |
 | `txtCodeLangue`  | `code_langue`  |
 | `txtNomLangue`   | `nom_langue`   |
@@ -170,11 +155,11 @@ MariaDB
 | `Langue_Delete`           | suppression    |
 | `Langue_CountDependances` | dépendances    |
 
-###### UC_Langues
+###### GestionLangues
 
-<img src="Images/UC_Langues.png" alt="UC_Langues" style="zoom:70%;" />
+<img src="Images/GestionLangues.png" alt="GestionLangues" style="zoom:70%;" />
 
-# 4.2 UC_Pays
+# 4.2 GestionPays
 
 ## Tables
 
@@ -194,7 +179,7 @@ MariaDB
 
 | Contrôle      | Champ DB    |
 | ------------- | ----------- |
-| `dgvPays`     | -           |
+| `dgvPays`     | —           |
 | `txtIdPays`   | `id_pays`   |
 | `txtCodePays` | `code_pays` |
 | `txtNomPays`  | `nom_pays`  |
@@ -223,11 +208,11 @@ MariaDB
 | `Pays_Delete`           | delete    |
 | `Pays_CountDependances` | usages    |
 
-###### UC_Pays
+###### GestionPays
 
-<img src="Images/UC_Pays.png" alt="UC_Pays" style="zoom:70%;" />
+<img src="Images/GestionPays.png" alt="GestionPays" style="zoom:70%;" />
 
-# 4.3 UC_RefEnum
+# 4.3 GestionRefEnum
 
 ## Tables
 
@@ -259,8 +244,8 @@ MariaDB
 
 | Contrôle                  | Champ DB          |
 | ------------------------- | ----------------- |
-| `dgvRefEnumTypes`         | -                 |
-| `dgvRefEnumValeurs`       | -                 |
+| `dgvRefEnumTypes`         | —                 |
+| `dgvRefEnumValeurs`       | —                 |
 | `txtIdEnumType`           | `id_enum_type`    |
 | `txtCodeEnumType`         | `code_enum_type`  |
 | `txtCodeType`             | `code_type`       |
@@ -303,15 +288,15 @@ MariaDB
 | `RefEnum_Delete`           | delete  |
 | `RefEnum_CountDependances` | usages  |
 
-###### UC_RefEnum - Tab Types Enum
+###### GestionRefEnum - Tab Types Enum
 
-<img src="Images/UC_RefEnum_1.png" alt="UC_RefEnum 1" style="zoom:70%;" />
+<img src="Images/GestionRefEnum_1.png" alt="GestionRefEnum 1" style="zoom:70%;" />
 
-###### UC_RefEnum - Tab Valeurs Enum
+###### GestionRefEnum - Tab Valeurs Enum
 
-<img src="Images/UC_RefEnum_2.png" alt="UC_RefEnum 2" style="zoom:70%;" />
+<img src="Images/GestionRefEnum_2.png" alt="GestionRefEnum 2" style="zoom:70%;" />
 
-# 4.4 UC_Contacts
+# 4.4 GestionContacts
 
 ## Tables
 
@@ -337,7 +322,7 @@ MariaDB
 
 | Contrôle            | Champ DB          |
 | ------------------- | ----------------- |
-| `dgvContacts`       | -                 |
+| `dgvContacts`       | —                 |
 | `txtIdContact`      | `id_contact`      |
 | `txtCodeContact`    | `code_contact`    |
 | `txtNomContact`     | `nom_contact`     |
@@ -367,11 +352,11 @@ MariaDB
 | `Contact_Delete`         | delete    |
 | `Contact_CountLivres`    | usages    |
 
-###### UC_Contacts.png
+###### GestionContacts.png
 
-<img src="Images/UC_Contacts.png" alt="UC_Contacts" style="zoom:70%;" />
+<img src="Images/GestionContacts.png" alt="GestionContacts" style="zoom:70%;" />
 
-# 4.5 UC_Editeurs
+# 4.5 GestionEditeurs
 
 ## Tables
 
@@ -399,14 +384,14 @@ MariaDB
 
 | Contrôle          | Champ DB                  |
 | ----------------- | ------------------------- |
-| `dgvEditeurs`     | -                         |
+| `dgvEditeurs`     | —                         |
 | `txtIdEditeur`    | `id_editeur`              |
 | `txtCodeEditeur`  | `code_editeur`            |
 | `txtNomEditeur`   | `nom_editeur`             |
 | `cboPaysEditeur`  | `id_pays`                 |
 | `txtSiteWeb`      | `site_web`                |
 | `rtbNotesEditeur` | `notes_editeur_rtf / txt` |
-| `chkSearchNotes`  | -                         |
+| `chkSearchNotes`  | —                         |
 
 ## GestionReferentiel
 
@@ -430,11 +415,11 @@ MariaDB
 | `Editeur_Delete`         | delete    |
 | `Editeur_CountLivres`    | usages    |
 
-###### UC_Editeurs
+###### GestionEditeurs
 
-<img src="Images/UC_Editeurs.png" alt="UC_Editeurs" style="zoom:70%;" />
+<img src="Images/GestionEditeurs.png" alt="GestionEditeurs" style="zoom:70%;" />
 
-# 4.6 UC_FormatFile
+# 4.6 GestionFormatFile
 
 ## Tables
 
@@ -462,7 +447,7 @@ MariaDB
 
 | Contrôle             | Champ DB          |
 | -------------------- | ----------------- |
-| `dgvFormatFile`      | -                 |
+| `dgvFormatFile`      | —                 |
 | `txtIdFormatFile`    | `id_formatFile`   |
 | `txtCodeFormatFile`  | `code_formatFile` |
 | `txtNomFormat`       | `nom_format`      |
@@ -493,11 +478,11 @@ MariaDB
 | `FormatFile_Delete`              | delete    |
 | `FormatFile_CountLivresFichiers` | usages    |
 
-###### UC_FormatFile
+###### GestionFormatFile
 
-<img src="Images/UC_FormatFile.png" alt="UC_FormatFile" style="zoom:70%;" />
+<img src="Images/GestionFormatFile.png" alt="GestionFormatFile" style="zoom:70%;" />
 
-# 4.7 UC_Impression
+# 4.7 GestionImpression
 
 ## Tables
 
@@ -525,7 +510,7 @@ MariaDB
 
 | Contrôle                   | Champ DB                 |
 | -------------------------- | ------------------------ |
-| `dgvImpression`            | -                        |
+| `dgvImpression`            | —                        |
 | `txtIdImpression`          | `id_impression`          |
 | `txtCodeImpression`        | `code_impression`        |
 | `txtNomImpression`         | `nom_impression`         |
@@ -533,7 +518,7 @@ MariaDB
 | `rtbNoteImpression`        | `note_rtf / txt`         |
 | `txtEnvieCal`              | `envie_Cal`              |
 | `chkImpressionActive`      | `is_actif`               |
-| `chkSearchNotes`           | -                        |
+| `chkSearchNotes`           | —                        |
 
 ## GestionReferentiel
 
@@ -557,11 +542,11 @@ MariaDB
 | `Impression_Delete`         | delete    |
 | `Impression_CountLivres`    | usages    |
 
-###### UC_Impression
+###### GestionImpression
 
-<img src="Images/UC_Impression.png" alt="UC_Impression" style="zoom:70%;" />
+<img src="Images/GestionImpression.png" alt="GestionImpression" style="zoom:70%;" />
 
-# 4.8 UC_Recommandations
+# 4.8 GestionRecommandations
 
 ## Tables
 
@@ -597,8 +582,8 @@ MariaDB
 
 | Contrôle                          | Champ DB                         |
 | --------------------------------- | -------------------------------- |
-| `dgvOriginesRecommandation`       | -                                |
-| `dgvRecommandations`              | -                                |
+| `dgvOriginesRecommandation`       | —                                |
+| `dgvRecommandations`              | —                                |
 | `txtIdOrigineRecommandation`      | `id_origine_recommandation`      |
 | `txtCodeOrigineRecommandation`    | `code_origine_recommandation`    |
 | `txtLibelleOrigineRecommandation` | `libelle_origine_recommandation` |
@@ -607,15 +592,15 @@ MariaDB
 | `txtIdRecommandation`             | `id_recommandation`              |
 | `txtCodeRecommandation`           | `code_recommandation`            |
 | `cboOrigineRecommandation`        | `id_origine_recommandation`      |
-| `cboFiltreOrigineRecommandation`  | -                                |
+| `cboFiltreOrigineRecommandation`  | —                                |
 | `txtSourceNom`                    | `source_nom`                     |
 | `txtSourceLogin`                  | `source_login`                   |
 | `txtSourceUrl`                    | `source_url`                     |
 | `dtpDateRecommandation`           | `date_recommandation`            |
 | `rtbCommentaireRecommandation`    | `commentaire_rtf / txt`          |
 | `chkRecommandationActive`         | `is_actif`                       |
-| `chkSearchNotes`                  | -                                |
-| `chkActifsOnly`                   | -                                |
+| `chkSearchNotes`                  | —                                |
+| `chkActifsOnly`                   | —                                |
 
 ## GestionReferentiel
 
@@ -649,15 +634,15 @@ MariaDB
 | `Recommandation_Delete`           | delete    |
 | `Recommandation_CountUsages`      | usages    |
 
-###### UC_Recommandations - Tab Origines
+###### GestionRecommandations - Tab Origines
 
-<img src="Images/UC_Recommandations_1.png" alt="UC_Recommandations 1" style="zoom:70%;" />
+<img src="Images/GestionRecommandations_1.png" alt="GestionRecommandations 1" style="zoom:70%;" />
 
-###### UC_Recommandations - Tab Recommandations
+###### GestionRecommandations - Tab Recommandations
 
-<img src="Images/UC_Recommandations_2.png" alt="UC_Recommandations 2" style="zoom:70%;" />
+<img src="Images/GestionRecommandations_2.png" alt="GestionRecommandations 2" style="zoom:70%;" />
 
-# 4.9 UC_PrixLit
+# 4.9 GestionPrixLit
 
 ## Tables
 
@@ -707,15 +692,15 @@ MariaDB
 
 | Contrôle                       | Champ DB                 |
 | ------------------------------ | ------------------------ |
-| `dgvPrixLit`                   | -                        |
+| `dgvPrixLit`                   | —                        |
 | `txtIdPrixLit`                 | `id_prixLit`             |
 | `txtCodePrixLit`               | `code_prixLit`           |
 | `txtNomPrixLit`                | `nom_prixLit`            |
 | `txtDescriptionPrixLit`        | `description_prixLit`    |
 | `rtbNotesPrixLit`              | `Notes_rtf / txt`        |
 | `chkPrixLitActif`              | `is_actif`               |
-| `chkRechercheDansNotesPrixLit` | -                        |
-| `dgvPrixLitCategorie`          | -                        |
+| `chkRechercheDansNotesPrixLit` | —                        |
+| `dgvPrixLitCategorie`          | —                        |
 | `txtIdPrixLitCategorie`        | `id_prixlit_categorie`   |
 | `txtCodePrixLitCategorie`      | `code_prixlit_categorie` |
 | `cboPrixLitParentCategorie`    | `id_prixLit`             |
@@ -723,19 +708,19 @@ MariaDB
 | `txtDescriptionCategorie`      | `description_categorie`  |
 | `nudOrdreAffichageCategorie`   | `ordre_affichage`        |
 | `chkPrixLitCategorieActif`     | `is_actif`               |
-| `dgvPrixLitAnnee`              | -                        |
+| `dgvPrixLitAnnee`              | —                        |
 | `txtIdPrixLitAnnee`            | `id_prixLit_Annee`       |
 | `txtCodePrixLitAnnee`          | `code_prixLit_Annee`     |
 | `cboPrixLitCategorieAnnee`     | `id_prixlit_categorie`   |
 | `nudAnneePrixLit`              | `annee`                  |
-| `cboFiltrePrixLit`             | -                        |
-| `chkActifsOnly`                | -                        |
+| `cboFiltrePrixLit`             | —                        |
+| `chkActifsOnly`                | —                        |
 
 ------
 
 ## 5. Règles clés
 
-- aucune requête SQL dans les écrans UI
+- aucune requête SQL dans les forms
 - toute donnée passe par `GestionReferentiel`
 - toute requête passe par `QueryModule`
 - toute suppression vérifie les dépendances
@@ -747,7 +732,7 @@ MariaDB
 
 ## 6. Typologie
 
-| Type                 | UC                                                        |
+| Type                 | Forms                                                     |
 | -------------------- | --------------------------------------------------------- |
 | Référentiels simples | Langues, Pays, Contacts, Editeurs, FormatFile, Impression |
 | Parent / enfant      | RefEnum, Recommandations                                  |
@@ -793,18 +778,19 @@ MariaDB
 | `PrixLitAnnee_Delete`            | delete      |
 | `PrixLitAnnee_CountLivres`       | usages      |
 
-###### UC_PrixLit - Tab Prix littéraire
+###### GestionPrixLit - Tab Prix littéraire
 
-<img src="Images/UC_PrixLit_1.png" alt="UC_PrixLit 1" style="zoom:70%;" />
+<img src="Images/GestionPrixLit_1.png" alt="GestionPrixLit 1" style="zoom:70%;" />
 
-###### UC_PrixLit - Tab Categoorie de prix
+###### GestionPrixLit - Tab Categoorie de prix
 
-<img src="Images/UC_PrixLit_2.png" alt="UC_PrixLit 2" style="zoom:70%;" />
+<img src="Images/GestionPrixLit_2.png" alt="GestionPrixLit 2" style="zoom:70%;" />
 
-###### UC_PrixLit - Tab Année
+###### GestionPrixLit - Tab Année
 
+[TOC]
 
-<img src="Images/UC_PrixLit_3.png" alt="UC_PrixLit 3" style="zoom:70%;" />
+<img src="Images/GestionPrixLit_3.png" alt="GestionPrixLit 3" style="zoom:70%;" />
 
 
 
@@ -815,3 +801,20 @@ MariaDB
 ---
 
 ---
+
+> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
+>
+> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
+> mailto: `joelle@nguyen.eu`
+>
+> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
+> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
+
+------
+
+------
+
+
+
+[TOC]
+

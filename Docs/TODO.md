@@ -1,6 +1,4 @@
-# ✅ TODO – Projet Artefact (Module Livres) - MàJ 24/05/2026
-
-[TOC]
+# ✅ TODO – Projet Artefact (Module Livres) - MàJ 28/02/2026
 
 Ce document regroupe toutes les étapes planifiées pour le développement de l’application Artefact. 
 Il est structuré par grands axes de travail avec des points détaillés pour chaque objectif.
@@ -65,11 +63,11 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 - [x] Gestion du path de configuration - création
 
 ### 	🎯🔹 UI
-- [x] Form principale (PortailReferentiels) : Navigation de base, accès aux différentes fonctionnalités. Création. Complétion au fur et à mesure du développement de l'application
+- [x] Form principale (Menu) : Navigation de base, accès aux différentes fonctionnalités. Création. Complétion au fur et à mesure du développement de l'application
 - [x] Form Modèle : avec les contrôles de base pour les forms ==> ToolStripStatus, Panel, lblTitre
 - [ ] Gestion des tables de paramètres
 - [ ] Gestion des fichiers .bat : copie de la base Calibre dans un path dédié
-- [ ] [🎯]  UC de gestion référentiels (CRUD simples) 
+- [ ] [🎯]  Forms de gestion référentiels (CRUD simples) 
   - [x] **Phase 1** : langues, pays, ref_enum, contacts, editeurs, formatfile, impression, 
   - [ ] [🎯] **Phase 2** :
     - [x] recommandation
@@ -110,13 +108,6 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 
 ## Enrichissement 
 - [ ] IA
-
-### IA (roadmap détaillée)
-- [ ] Définir les cas d'usage IA prioritaires (résumé, recommandations, enrichissement métadonnées)
-- [ ] Définir les sources autorisées et leur niveau de confiance
-- [ ] Définir un mode "IA assistante" (proposition) vs "IA autonome" (action encadrée)
-- [ ] Définir les garde-fous (traçabilité, validation humaine, logs)
-- [ ] Définir une première version exploitable sur un périmètre réduit
 - [ ] Auteurs : biographie, news, critiques
 - [x] Recommandations et origines des recommandations (ex: TikTok, Booktpk, Instagram, librairie etc..)
 - [ ] Evaluation d'un livre : après lecture. pas des étoiles. Trouver autre façon de représenter cette appréciation (par ex : une mini représentation de Bookzilla) Une seule = moins bonne, 6 la meilleure
@@ -142,14 +133,6 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 
 ---
 
-## En pause / à clarifier
-
-- [ ] Recherche globale transverse (reportée)
-- [ ] Arbitrage design final (steampunk/vintage/autre)
-- [ ] Stratégie de publication Web (timing et périmètre MVP)
-
----
-
 ## Navigation, ergonomie, design
 - [ ] Navigation par menus et/ou onglets et/ou dashboard
 - [ ] Ergonomie – simplicité d’utilisation, fluidité, accessibilité
@@ -163,8 +146,27 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 
 
 
+---
+---
+
+> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
+>
+> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
+> mailto: `joelle@nguyen.eu`
+>
+> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
+> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
+>
+
+---
+---
 
 
 
 
 ---
+
+
+
+
+

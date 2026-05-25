@@ -1,7 +1,5 @@
 # 📐 Règles de conception 
 
-[TOC]
-
 Ce document décrit les règles de conception et décisions techniques prises
 lors de la création de la base de données **Artefact**.
 
@@ -9,7 +7,7 @@ Ces règles sont considérées comme **fondatrices** pour Artefact v1.
 
 ---
 
-## 📐 Règles générales de développement
+ # 📐 Règles générales de développement
 
 ### 1. **🧠 Planifier d’abord**  
 
@@ -221,8 +219,8 @@ ALTER TABLE auteurs
 
 ##### Démarrage de l’application :
 
-- L’application démarre sur la Form `PortailReferentiels`.
-- `PortailReferentiels` constitue le point d’entrée principal vers les modules métier.
+- L’application démarre sur la Form `Home`.
+- `Home` constitue le point d’entrée principal vers les modules métier.
 - La vérification de la connexion MariaDB est effectuée au démarrage via `DatabaseManager`.
 - Aucun accès direct à la base ne doit être réalisé en dehors de `DatabaseManager`.
 
@@ -242,9 +240,9 @@ End Using
 
 ---
 
-### 11. 🧩 **Modèle UI obligatoire (Form / UC)**
+### 11. 🧩 **Form modèle obligatoire**
 
-Tous les écrans de l’application (Forms ou UserControls) doivent hériter ou reproduire la structure standard suivante :
+Toutes les Forms de l’application doivent hériter ou reproduire la structure standard suivante :
 
 ##### Contrôles obligatoires :
 
@@ -269,7 +267,7 @@ pnlForm.Name = "pnlForm"
 
 ##### Structuration UI (Pannelisation obligatoire)
 
-Tous les écrans doivent être structurés par zones logiques :
+Toutes les Forms doivent être structurées par zones logiques :
 - ex:
 - `pnlTop` → Titre / infos générales
 - `pnlActions` → Boutons
@@ -327,7 +325,7 @@ Chaque Sub ou Function doit comporter :
 ' Retourne une connexion MariaDB ouverte.
 ' Initialise la chaîne de connexion si nécessaire.
 '
-' Appelé par : PortailReferentiels_Load, ConfigManager
+' Appelé par : Home_Load, ConfigManager
 '------------------------------------------------------------
 Public Shared Function GetConnexionMariaDB() As MySqlConnection
 ```
@@ -709,7 +707,7 @@ Cette règle est particulièrement importante pour les référentiels fortement 
 
 #### 12. Synchronisation DataGridView / Détails
 
-Dans les écrans de gestion référentielle utilisant une DataGridView :
+Dans les forms de gestion référentielle utilisant une DataGridView :
 
 - La ligne courante doit être déterminée à partir de `DataGridView.CurrentRow`.
 - L’utilisation de `SelectedRows(0)` doit être évitée pour la synchronisation des détails.
@@ -766,7 +764,7 @@ Toute manipulation RichText doit passer par :
 `RichTextNotesHelper`
 
 Interdictions :
-- manipulation directe du RTF dans les écrans UI
+- manipulation directe du RTF dans les forms
 - duplication de logique
 
 #### ComboBox (critique)
@@ -831,7 +829,7 @@ Ce modèle permet :
   - l'événement de recommandation
   - l'état du livre dans le système
 	
-### Règle - ComboBox (critique)
+### Règle — ComboBox (critique)
 
 Une ComboBox ne peut pas avoir un double rôle :
 - filtre
@@ -842,3 +840,21 @@ Si nécessaire :
 
 Sinon :
 - prévoir validation stricte empêchant toute valeur invalide en base
+
+---
+---
+
+> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
+>
+> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
+> mailto: `joelle@nguyen.eu`
+>
+> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
+> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
+>
+
+---
+---
+
+[TOC]
+

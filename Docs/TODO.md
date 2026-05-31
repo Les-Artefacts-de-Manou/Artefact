@@ -1,4 +1,6 @@
-# ✅ TODO – Projet Artefact (Module Livres) - MàJ 28/02/2026
+# ✅ TODO – Projet Artefact (Module Livres) - MàJ 24/05/2026
+
+[TOC]
 
 Ce document regroupe toutes les étapes planifiées pour le développement de l’application Artefact. 
 Il est structuré par grands axes de travail avec des points détaillés pour chaque objectif.
@@ -47,10 +49,13 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 	- [x] Rules.md pour définir les règles de développement - Au fur et à mesure de l’avancement du projet, ce document pourra être enrichi avec des règles de développement, des bonnes pratiques, etc. avec date dans le nom du fichier.
 	- [x] Process_Artefact.md pour documenter les processus de développement, les étapes de validation, etc. 
 	- [x] diagramme de processus pour chaque processus. Au fur et à mesure : à chaque fin de processus validé.  avec date dans le nom du fichier.
-	- [ ] Documentation technique détaillée pour chaque module, classe, Form. Au fur et à mesure de l’avancement du projet, ce document pourra être enrichi avec des descriptions détaillées de chaque module, classe, Form, etc. avec date dans le nom du fichier.
+	- [x] Documentation technique détaillée pour chaque module, classe, Form. Au fur et à mesure de l’avancement du projet, ce document pourra être enrichi avec des descriptions détaillées de chaque module, classe, Form, etc. avec date dans le nom du fichier.
 	- [x] TODO.md pour suivre les tâches à réaliser, les étapes de développement, etc. (ce document). Mis à jour régulièrement. Validation de la ligne de tâches à chaque fin de tâche.  
-	- [x] 	▫ Diagramme complet de la base (image)
+	- [x] 	Diagramme complet de la base (image)
 	- [x] ModeleDB.md : description détaillée de la base de données, avec les tables, les champs, les relations, etc. avec date dans le nom du fichier.
+	- [x] ADR (Architecture Decision Records) pour documenter les décisions d’architecture prises au cours du projet. Au fur et à mesure de l’avancement du projet, ce document pourra être enrichi avec des descriptions détaillées de chaque décision d’architecture, les alternatives envisagées, les raisons du choix, etc. avec date dans le nom du fichier.
+	- [x] Vision.md pour documenter la vision à long terme du projet, les objectifs à atteindre, les fonctionnalités envisagées, etc. avec date dans le nom du fichier.
+	- [x] Glossaire.md pour définir les termes techniques, les acronymes, etc. utilisés dans le projet. Au fur et à mesure de l’avancement du projet, ce document pourra être enrichi avec des définitions détaillées de chaque terme technique, acronyme, etc. avec date dans le nom du fichier.
 
 ---
 
@@ -61,41 +66,57 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 - [x] Connexion MariaDB centralisée - fichier json de configuration pour les paramètres de connexion
 - [x] Connexion au départ de l'application testée et validée
 - [x] Gestion du path de configuration - création
+- [ ] Gestion des fichiers .bat : copie de la base Calibre dans un path dédié
 
 ### 	🎯🔹 UI
-- [x] Form principale (Menu) : Navigation de base, accès aux différentes fonctionnalités. Création. Complétion au fur et à mesure du développement de l'application
+
+#### 	🔹 UC de gestion des référentiels
+
+- [x] PortailReferentiels : Navigation de base, accès aux différentes fonctionnalités. Création. Complétion au fur et à mesure du développement de l'application
 - [x] Form Modèle : avec les contrôles de base pour les forms ==> ToolStripStatus, Panel, lblTitre
-- [ ] Gestion des tables de paramètres
-- [ ] Gestion des fichiers .bat : copie de la base Calibre dans un path dédié
-- [ ] [🎯]  Forms de gestion référentiels (CRUD simples) 
-  - [x] **Phase 1** : langues, pays, ref_enum, contacts, editeurs, formatfile, impression, 
-  - [ ] [🎯] **Phase 2** :
+
+- [ ] [🎯]  UC de gestion référentiels (CRUD simples) 
+  - [x] **Phase 1** : langues, pays, contacts, editeurs, formatfile, impression, 
+  - [x] **Phase 2** :
     - [x] recommandation
-    - [ ] [🎯]  PrixLit
+	- [x] refEnum
+    - [x] PrixLit
   - [ ] **Phase 3** :
      - [ ] Auteurs
      - [ ] Series
      - [ ] Tags
   - [ ] **Phase 4** :
     - [ ] Les 3 tables de paramètres
+	- [ ] Gestion des tables de paramètres
     - [ ] Autres tables techniques (?)
-
+- [ ] Revoir la Recherche simple dans les UC de gestion des référentiels de la phase 2 en se référant à ce qui a été établi dans PrixLit 
+- [ ] UC_Accueil Portail Référentiels : accès aux différentes fonctionnalités de gestion des référentiels (CRUD, import, etc.)
+    - [x] Ajoût de boutons d’accès rapide aux différentes fonctionnalités de gestion des référentiels
+	- [ ] Widgets d’affichage de données clés concernant les référentiels (ex : nombre de tags, nombre d’auteurs, etc., derniers référentiels ajoutés, etc.)
 - [x] Gestion des erreurs : affichage dans ToolStripStatus global ou MessageBox si erreur critique
 - [ ] Gestion de la copie DB de Calibre pour éviter les problèmes de verrouillage de la DB d’origine (fichiers.bat déja créer - à intégrer dans l’application)
 - [ ] Imports de masse de référentiels de base depuis les forms de gestion respectives: Tags, formats, Pays, Contacts
 - [x] Gestion des logs uniformisée (Module spécifique)
   - [ ] Affichage dans une form dédiée pour une consultation aisée ?
 
-### 	🔹 UI Contrôles spécifiques
+  #### Home / Dashboard
+  - [ ] Dashboard d’accueil avec accès rapide aux fonctionnalités clés (ex : consultation de la bibliothèque, gestion des livres, référentiels, etc.)
+	- [ ] Widgets d’affichage dans la form d’accueil : nombre de livres, nombre d’auteurs, derniers livres ajoutés, sorties annoncées, etc.
+
+#### UI Contrôles spécifiques
 
 - [ ] Menus
-- [x] RichTextBox enrichi avec petite barre de menu pour gérer les notes (Gras, Italique, Souligné, Tabulations, listes)
-- [ ] Calendrier
+- [x] RichTextBox enrichi simple avec petite barre de menu pour gérer les petites notes (Gras, Italique, Souligné, Tabulations, listes)
+- [x] Barre d'outils pour le RichTextBox enrichi
+- [ ] RichTextBox enrichi avancé avec possibilité d’ajouter des images, des liens, etc. et barre de menu pour gérer les fonctionnalités avancées
+- [x]  Form pour MessageBox personnalisée (ex : pour les confirmations de suppression, etc.)
+- [ ] Calendrier pour la gestion des dates (ex : dates de lecture, dates de sorties, etc.)
 
 ---
 
 ##  Import & logique métier
 - [ ] Import Calibre
+- [ ] Import de livres en staging
 - [ ] Gestion des paths Data (e-books, couvertures, Photos auteurs etc...
 - [ ] Forms de gestion des livres (CRUD)
 - [ ] gestion des fichiers e_books et couvertures + Définition des dossiers de stockage
@@ -108,6 +129,11 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 
 ## Enrichissement 
 - [ ] IA
+- [ ] Définir les cas d'usage IA prioritaires (résumé, recommandations, enrichissement métadonnées)
+- [ ] Définir les sources autorisées et leur niveau de confiance
+- [ ] Définir un mode "IA assistante" (proposition) vs "IA autonome" (action encadrée)
+- [ ] Définir les garde-fous (traçabilité, validation humaine, logs)
+- [ ] Définir une première version exploitable sur un périmètre réduit
 - [ ] Auteurs : biographie, news, critiques
 - [x] Recommandations et origines des recommandations (ex: TikTok, Booktpk, Instagram, librairie etc..)
 - [ ] Evaluation d'un livre : après lecture. pas des étoiles. Trouver autre façon de représenter cette appréciation (par ex : une mini représentation de Bookzilla) Une seule = moins bonne, 6 la meilleure
@@ -133,6 +159,16 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 
 ---
 
+## Divers
+
+- [ ] Recherche globale transverse 
+- [ ] Arbitrage design final (steampunk/vintage/autre)
+- [ ] Stratégie de publication Web (timing et périmètre MVP)
+- [ ] Reader rapide des e-books depuis l’application
+- [ ] Conversion de formats e-books notamment ePub vers AZW3
+
+---
+
 ## Navigation, ergonomie, design
 - [ ] Navigation par menus et/ou onglets et/ou dashboard
 - [ ] Ergonomie – simplicité d’utilisation, fluidité, accessibilité
@@ -141,32 +177,12 @@ Il est structuré par grands axes de travail avec des points détaillés pour ch
 - [ ] Interface Web
 - [ ] Thèmes personnalisables
 - [ ] Versionnement de l’application (ex : v1.0, v1.1, etc.) et gestion des mises à jour
-- [ ] Gestion des fichiers l'installation et de la configuration initiale de l'application, y compris la création de la base de données et des tables nécessaires.
 - [ ] Rédaction d’une documentation utilisateur pour expliquer les fonctionnalités de l’application 
 
 
 
----
----
-
-> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
->
-> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
-> mailto: `joelle@nguyen.eu`
->
-> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
-> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
->
-
----
----
 
 
 
 
 ---
-
-
-
-
-

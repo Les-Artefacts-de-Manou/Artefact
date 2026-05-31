@@ -1,61 +1,47 @@
-# 📐 Règles de conception 
+# Règles de conception
 
-Ce document décrit les règles de conception et décisions techniques prises
-lors de la création de la base de données **Artefact**.
+Ce document décrit les règles de conception et décisions techniques prises lors de la création de la base de données **Artefact**.
 
 Ces règles sont considérées comme **fondatrices** pour Artefact v1.
 
 ---
 
- # 📐 Règles générales de développement
+## Règles générales de développement
 
-### 1. **🧠 Planifier d’abord**  
+### 1. Planifier d'abord
 
-Comprendre, anticiper, questionner avant d’agir. Ne jamais foncer tête baissée. Une bonne analyse précède un bon code.
+Comprendre, anticiper, questionner avant d'agir. Ne jamais foncer tête baissée. Une bonne analyse précède un bon code.
 
----
+### 2. Step by step, toujours
 
-### 2. **🪜 Step by step, toujours.**  
+Chaque étape est validée avant d'aller plus loin. On avance par petits pas, avec des points de contrôle réguliers pour éviter les dérives et garantir la cohérence globale.
 
-Chaque étape est validée avant d’aller plus loin. On avance par petits pas, avec des points de contrôle réguliers pour éviter les dérives et garantir la cohérence globale.
+### 3. Code clair, versionné, commenté
 
----
+- Nom explicite de la fonction/procédure
+- Commentaire en-tête obligatoire (entier copié même pour une petite modif)
+- Ajout systématique dans le changelog `.md` à la fin de chaque thread
+- Documentation des décisions prises et des raisons derrière chaque choix
 
-### 3. **📜 Code clair, versionné, commenté**
-
-- Nom explicite de la fonction/procédure.
-- Commentaire en-tête obligatoire :
- - Entier copié (même pour une petite modif) pour garantir cohérence du contexte.
-- Ajout systématique dans le changelog `.md` à la fin de chaque thread.
-- Documentation des décisions prises et des raisons derrière chaque choix.
-
----
-
-### 4. **📝 Documenter dès le départ**
+### 4. Documenter dès le départ
 
 - Changelog `.md` → **fin de la journée pour toute la journée**
 - Résumé OneNote → en parallèle si besoin pour la journée
 - README.md → si impact structurel ou de logique globale
 - Rules.md → pour les règles de conception et de développement
 
----
-
-### 5. **♻️ Factorisation**
+### 5. Factorisation
 
 - Jamais de doublon sans raison
-- Créer ou réutiliser des fonctions centrales dans  des modules séparés et dédiés (ex : `Utils.vb`, `DatabaseManager.vb`, `ConfigManager.vb`, `GestionLog.vb`, etc.) pour éviter la redondance et faciliter la maintenance.
-- Toujours se demander : "Est-ce que cette logique existe déjà quelque part ? Peut-elle être réutilisée ou adaptée ?"
-- Ne pas hésiter à refactoriser si nécessaire.
-	
-   ---
+- Créer ou réutiliser des fonctions centrales dans des modules séparés et dédiés (ex : `Utils.vb`, `DatabaseManager.vb`, `ConfigManager.vb`, `GestionLog.vb`)
+- Toujours se demander : "Est-ce que cette logique existe déjà quelque part ?"
+- Ne pas hésiter à refactoriser si nécessaire
 
-### 6.**🧪 Target framework**
+### 6. Target framework
 
 - `net8.0-windows` → attention aux packages compatibles
 
----
-
-### 7. **🛠 Mémo Démarrage d’une Modif**
+### 7. Mémo Démarrage d'une Modif
 
 | Élément | Action |
 |--------|--------|
@@ -64,9 +50,7 @@ Chaque étape est validée avant d’aller plus loin. On avance par petits pas, 
 | ToolstripStatus + log | Si UI ou process |
 | Répercussions | Indiquer les appels, docs, etc. |
 
----
-
-### 8.**🧭 Conventions de nommage**
+### 8. Conventions de nommage
 
 #### Fichiers et classes
 
@@ -77,8 +61,9 @@ Chaque étape est validée avant d’aller plus loin. On avance par petits pas, 
 | Entité non normalisée | `LivreAnorm.vb` |
 | Manager | `DatabaseManager.vb`, `ConfigManager.vb` |
 | Formulaire | `NomForm.vb` explicite |
+| UserControl | `UC_NomExplicite.vb` |
 | Module logique | `GestionLivresCalibre.vb`, etc. |
-| Utilitaires | `Utils.vb`, `UtilsForm.vb` |
+| Utilitaires | `Utils.vb`, `UtilsForm.vb`, `UtilsUCReferentiels.vb` |
 
 #### Fonctions
 
@@ -89,388 +74,817 @@ Chaque étape est validée avant d’aller plus loin. On avance par petits pas, 
 | `ConstruireX()` | Génération (chemin, clause SQL…) |
 | `TraiterX()` | Traitement global |
 | `InsererXDansDB()` | Insertion DB |
+| `ConfigurerX()` | Configuration UI ou composant |
+| `ValidateX()` | Validation métier |
 
 #### Contrôles UI
 
 | Préfixe | Contrôle |
 |---------|----------|
 | `txt`| TextBox |
-| `but` | Boutons |
+| `btn` | Boutons |
 | `dtp` | DateTimePicker |
 | `lsv` | ListView |
-| `chk` | CheckBox |   
+| `chk` | CheckBox |
 | `dgv` | DataGridView |
 | `cmb` | ComboBox |
 | `lbl` | Labels |
 | `lst` | ListBox |
-| `nud` | numericUpDown  |
+| `nud` | numericUpDown |
 | `tab` | TabControl |
 | `grp` | GroupBox |
 | `pnl` | Panel |
 | `pic` | PictureBox |
 | `tls` | ToolStrip |
-| `men_` | MenuStrip |
+| `men` | MenuStrip |
 | `sts` | StatusStrip |
 | `wbw` | WebView2 |
 | `pgb` | ProgressBar |
-| `lil` | LinkLabel |
+| `lnk` | LinkLabel |
 | `rtb` | RichTextBox |
 | `trv` | TreeView |
 | `spc` | SplitContainer |
 | `flp` | FlowLayoutPanel |
 | `tlp` | TableLayoutPanel |
+| `ttp` | ToolTip |
+| `err` | ErrorProvider |
 
 ---
 
-### 9. 📐 **Database Artefact**
+## Database Artefact
 
-#### 1. Clés primaires (IDs)
+### Clés primaires (IDs)
 
-##### Principe
-- Toutes les tables utilisent une clé primaire numérique.
+#### Principe
+- Toutes les tables utilisent une clé primaire numérique
 - Type : `BIGINT UNSIGNED`
-- Pas de clé primaire composite.
-- Pas de clé primaire textuelle.
-- le nom de ID est toujours id_[nom de la Table] pour garantir la clarté et la cohérence à travers tout le schéma.
+- Pas de clé primaire composite
+- Pas de clé primaire textuelle
+- Le nom de ID est toujours `id_[nom de la Table]` pour garantir la clarté et la cohérence
 
-##### Convention
-id_<nom_table>
-	- Exemples : id_auteur / id_tag   /   id_serie
+#### Convention
+`id_<nom_table>`
 
-##### Génération des IDs (SEQUENCE)
-- AUTO_INCREMENT n’est pas utilisé
+Exemples : `id_auteur`, `id_tag`, `id_serie`
+
+#### Génération des IDs (SEQUENCE)
+- AUTO_INCREMENT n'est pas utilisé
 - Chaque table nécessitant un ID lisible dispose de :
-- une SEQUENCE dédiée
-- un DEFAULT (NEXT VALUE FOR seq_xxx)
-- Faire la création d'une nouvelle table en 2 fois sinon MariaDB n'accepte pas:
+  - une SEQUENCE dédiée
+  - un DEFAULT (NEXT VALUE FOR seq_xxx)
+- Création en 2 fois (contrainte MariaDB) :
+
 ```SQL
- id_series_format BIGINT UNSIGNED NOT NULL,
+CREATE TABLE ma_table (
+  id_ma_table BIGINT UNSIGNED NOT NULL
+);
+
+ALTER TABLE ma_table
+  ALTER COLUMN id_ma_table SET DEFAULT (NEXT VALUE FOR seq_ma_table);
 ```
- et ensuite avec un ALTER:
- ```SQL
- ALTER TABLE series_format
-  ALTER COLUMN id_series_format SET DEFAULT (NEXT VALUE FOR seq_series_format);
- ```
-  ==> Permet l’usage de colonnes GENERATED STORED et de garantir l’unicité des IDs même
+
+#### Configuration SEQUENCE standard
 
 ```SQL
 CREATE SEQUENCE seq_auteurs
-    START WITH 1
-    INCREMENT BY 1
-    MINVALUE 1
-    NO MAXVALUE
-    CACHE 1
-    NOCYCLE;
-
-ALTER TABLE auteurs
-  MODIFY COLUMN id_auteur BIGINT UNSIGNED NOT NULL;
-
-ALTER TABLE auteurs
-  ALTER COLUMN id_auteur SET DEFAULT (NEXT VALUE FOR seq_auteurs);
+	START WITH 1
+	INCREMENT BY 1
+	MINVALUE 1
+	NO MAXVALUE
+	CACHE 1
+	NOCYCLE;
 ```
 
-- **START WITH 1** - On démarre à 1 par convention.
-- **INCREMENT BY 1** - Incrément strictement séquentiel, logique métier simple.
-- **MINVALUE 1** - On interdit les valeurs négatives.
-- **NO MAXVALUE** - On laisse la séquence monter tant que le type BIGINT le permet (9 quintillions, on est tranquille).
-- **CACHE 1** - Très important.
-Évite les sauts de 1000 observés avec le cache par défaut.
-Garantit un comportement prévisible en phase dev.
-L’impact performance est négligeable pour Artefact.
-- **NOCYCLE** - Interdit le retour à 1 quand la limite max est atteinte (comportement dangereux si activé).
+- **START WITH 1** : Convention de départ
+- **INCREMENT BY 1** : Incrément séquentiel simple
+- **MINVALUE 1** : Interdiction des valeurs négatives
+- **NO MAXVALUE** : Pas de limite (BIGINT permet 9 quintillions)
+- **CACHE 1** : Évite les sauts de 1000, comportement prévisible
+- **NOCYCLE** : Interdit le retour à 1
 
-#### 2. TRUNCATE TABLE
-- TRUNCATE TABLE ne réinitialise pas les séquences. ==> utiliser `ALTER SEQUENCE seq_xxx RESTART WITH 1` pour repartir à 1 si besoin.
+#### TRUNCATE TABLE
+TRUNCATE TABLE ne réinitialise pas les séquences → utiliser `ALTER SEQUENCE seq_xxx RESTART WITH 1`
 
-#### 3. Codes lisibles (code_xxx)
+### Codes lisibles (code_xxx)
+
 - Chaque entité possède un code lisible
-- Le code :
-	- est stocké
-	- est généré automatiquement
-	- n’est jamais une clé primaire
-	- n’est jamais utilisé comme clé étrangère
+- Le code est stocké, généré automatiquement
+- N'est jamais une clé primaire
+- N'est jamais utilisé comme clé étrangère
 
-		```<Préfixe><ID sur 6 chiffres>```
-##### Exemples :
-- A000042 (Auteur)
-- T000017 (Tag)
-- S000003 (Série)
+Format : `<Préfixe><ID sur 6 chiffres>`
 
-##### Implémentation
+Exemples : `A000042` (Auteur), `T000017` (Tag), `S000003` (Série)
+
+#### Implémentation
+
 ```SQL
 ALTER TABLE auteurs
   ADD COLUMN code_auteur VARCHAR(12)
   GENERATED ALWAYS AS (
-    CONCAT('A', LPAD(id_auteur, 6, '0'))
+	CONCAT('A', LPAD(id_auteur, 6, '0'))
   ) STORED,
   ADD UNIQUE KEY uq_auteurs_code (code_auteur);
 ```
+
 **Nota : Si Drop de table**
-1. penser à supprimer la séquence associée pour éviter les conflits à la recréation.
-2. penser à supprimer les références à la séquence dans les autres tables (DEFAULT NEXT VALUE FOR seq_xxx) pour éviter les erreurs à la recréation.
-3. Penser à faire un DROP des clés primaires et étrangères à part avant de faire un DROP de table pour éviter les erreurs de dépendance et de recréation
+1. Supprimer la séquence associée
+2. Supprimer les références DEFAULT dans autres tables
+3. DROP les clés primaires et étrangères avant DROP table
 
-### 10. 🛩️ **Connection Database et démarrage application**
+---
 
-- Un point d’accès centralisé.
-- L’ouverture est gérée automatiquement dans `GetConnexionMariaDB()`.
-- La fermeture est implicite via le bloc `Using`.
-- Le pooling ADO.NET assure la performance.
+## Connection Database et démarrage application
 
-##### Démarrage de l’application :
+### Point d'accès unique
 
-- L’application démarre sur la Form `Home`.
-- `Home` constitue le point d’entrée principal vers les modules métier.
-- La vérification de la connexion MariaDB est effectuée au démarrage via `DatabaseManager`.
-- Aucun accès direct à la base ne doit être réalisé en dehors de `DatabaseManager`.
+- L'ouverture est gérée automatiquement dans `GetConnexionMariaDB()`
+- La fermeture est implicite via le bloc `Using`
+- Le pooling ADO.NET assure la performance
 
-La connexion MariaDB est obtenue exclusivement via :
+### Démarrage de l'application
 
-```
+- L'application démarre sur la Form `home.vb` (menu principal)
+- `home.vb` lance `PortailReferentiels` pour la gestion des référentiels
+- La vérification de la connexion MariaDB est effectuée au démarrage via `DatabaseManager`
+- Aucun accès direct à la base en dehors de `DatabaseManager`
+
+### Usage standard
+
+```vb
 Using conn As MySqlConnection = DatabaseManager.GetConnexionMariaDB()
-    If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
-        ' Requête ici
-    End If
+	If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+		' Requête ici
+	End If
 End Using
 ```
-- `conn.Open()` ne doit jamais être appelé manuellement.
-- L’ouverture est gérée automatiquement dans `GetConnexionMariaDB()`.
-- La fermeture est implicite via le bloc `Using`.
-- Le pooling ADO.NET assure la performance.
+
+**Règles strictes** :
+- `conn.Open()` ne doit **jamais** être appelé manuellement
+- L'ouverture est gérée automatiquement
+- La fermeture est implicite via `Using`
 
 ---
 
-### 11. 🧩 **Form modèle obligatoire**
+## Architecture UI - Migration UserControls (Mars 2026)
 
-Toutes les Forms de l’application doivent hériter ou reproduire la structure standard suivante :
+### Principe architectural
 
-##### Contrôles obligatoires :
+Les anciennes Forms de gestion (`GestionImpression`, `GestionRecommandations`, `GestionPrixLit`) ont été **migrées vers des UserControls** hébergés dans `PortailReferentiels`.
 
-- `lblTitreForm` → Label titre principal
-- `stsStatus` → StatusStrip
-- `stsLabelStatus` → ToolStripStatusLabel
-- `pnlForm` → Panel principal de contenu
+### Bénéfices
 
-##### Nommage strict :
+- **Contexte partagé** : ToolTip, ErrorProvider, StatusStrip, NavigationManager
+- **Code factorisé** : Helpers centralisés dans `UtilsUCReferentiels`
+- **Interface homogène** : Navigation fluide avec fil d'Ariane
+- **Maintenance simplifiée** : Patterns standardisés
 
+### Structure UI
+
+#### Forms_Portail
+
+- **`home.vb`** : Menu principal de l'application (point d'entrée)
+- **`PortailReferentiels.vb`** : Portail hébergeant tous les UC référentiels
+
+#### UserControls_Referentiels
+
+**UC simples (1 table)** :
+- `UC_Langues`, `UC_Pays`, `UC_Contacts`, `UC_Editeurs`, `UC_FormatFile`, `UC_Impression`
+
+**UC hiérarchiques (master-detail)** :
+- `UC_RefEnum` (types + valeurs)
+- `UC_Recommandations` (origines + recommandations)
+- `UC_PrixLit` (prix → catégories → années)
+
+### Composants transverses obligatoires
+
+#### UserControlContext
+
+Tous les UC reçoivent un contexte unifié depuis `PortailReferentiels` :
+- `SharedToolTip` : ToolTip partagé
+- `SharedErrorProvider` : ErrorProvider partagé
+- `SharedStatusStrip` : StatusStrip partagé
+- `NavigationManager` : Gestionnaire de navigation et fil d'Ariane
+
+#### Interface IContextAwareUserControl
+
+Tous les UC référentiels doivent implémenter :
+
+```vb
+Public Interface IContextAwareUserControl
+	Sub SetContext(context As UserControlContext)
+End Interface
 ```
-Me.stsStatus.Name = "stsStatus"
-stsLabelStatus.Name = "stsLabelStatus"
-pnlForm.Name = "pnlForm"
+
+#### NavigationManager
+
+Gère le fil d'Ariane et la navigation :
+- `PushNavigation(title As String)` : Ajoute un niveau
+- `PopNavigation()` : Retour arrière
+- `ClearNavigation()` : Réinitialise
+- Synchronisation automatique avec le label de navigation
+
+### Helpers partagés (UtilsUCReferentiels)
+
+Module centralisant les fonctions communes aux UC :
+
+**Configuration UI** :
+- `ConfigurerStyleGrid(dgv)` : Style DataGridView uniforme
+- `ConfigurerBoutonsMode(mode, btnNew, btnEdit, btnSave, btnCancel, btnDelete, Optional btnNewChild)` : Gestion états boutons
+- `ConfigurerRecherche(txtSearch, btnSearch, btnClear)` : Configuration zone de recherche
+
+**Validation** :
+- `ValidateRequiredField(errProvider, control, fieldName, value)` : Validation champs requis
+
+**Conversions sécurisées** :
+- `DbToBool(value)`, `DbToInt(value)`, `SafeULong(value)` : Conversions depuis DB
+
+**Manipulation DataGridView** :
+- `HideTechnicalColumns(dgv)` : Masquage colonnes ID/codes
+- `MasquerColonnesTechniques(dgv)` : Alias francophone
+- `SetColonneVisible(dgv, columnName, visible)` : Visibilité colonne
+- `UpdateCountLabel(lbl, count)` : Mise à jour compteur
+
+**Extraction valeurs** :
+- `GetStringValue(row, columnName)`, `GetBoolValue(row, columnName)`, `GetIntValue(row, columnName)`
+
+### RichTextBox enrichi (RichTextNotesHelper)
+
+Système standardisé pour notes formatées :
+
+#### Principe
+
+Chaque champ de notes est stocké dans deux colonnes :
+- `xxx_rtf` : contenu formaté (affichage UI)
+- `xxx_txt` : texte brut (recherche SQL)
+
+#### UserControl standard : UC_RichTextEditor
+
+Composant réutilisable avec toolbar intégrée :
+- Gras, Italique, Souligné
+- Liste à puces
+- Tabulation
+- Synchronisation automatique RTF ↔ TXT
+
+#### API RichTextNotesHelper
+
+```vb
+' Initialisation
+RichTextNotesHelper.InitializeRichTextBox(rtb)
+
+' Chargement
+RichTextNotesHelper.LoadRtfContent(rtb, rtfFromDb)
+
+' Sauvegarde
+Dim rtfContent As String = RichTextNotesHelper.GetRtfContent(rtb)
+Dim txtContent As String = RichTextNotesHelper.GetPlainText(rtb)
+
+' Actions formatage
+RichTextNotesHelper.ToggleBold(rtb)
+RichTextNotesHelper.ToggleItalic(rtb)
+RichTextNotesHelper.ToggleUnderline(rtb)
+RichTextNotesHelper.ToggleBulletList(rtb)
 ```
 
-##### Règles :
+#### Règles strictes
 
-- Aucun MessageBox pour les statuts normaux.
-- Les messages passent par `AfficherMessageStatus`.
-- Les logs passent par `GestionLog`.
+- Le RTF n'est **jamais** utilisé pour les recherches SQL
+- Le texte brut n'est **jamais** utilisé pour l'affichage riche
+- Toute manipulation passe par le helper
+- Pas de manipulation directe du RTF dans les écrans UI
 
-##### Structuration UI (Pannelisation obligatoire)
+### Modes d'édition (UtilsForm.ModeEdition)
 
-Toutes les Forms doivent être structurées par zones logiques :
-- ex:
-- `pnlTop` → Titre / infos générales
-- `pnlActions` → Boutons
-- `pnlForm` → Contenu principal (de base dans le modèle)
-- `pnlBottom` → Informations secondaires si nécessaire
+Enum partagé par tous les UC :
 
-##### Objectifs :
+```vb
+Public Enum ModeEdition
+	Consultation
+	Nouveau
+	Modification
+End Enum
+```
 
-- UI modulaire
-- Maintenance facilitée
-- Refactoring plus simple
-- Lisibilité du code designer
-- Cohérence visuelle globale
+#### Workflow standard
 
-==> Aucun contrôle métier directement posé sur la Form racine en vrac.
+1. **Consultation** (par défaut) :
+   - Champs désactivés
+   - Boutons : Nouveau, Modifier, Supprimer actifs
+   - Navigation libre dans DataGridView
 
-==> Tout est contenu dans des Panels dédiés.
+2. **Nouveau** :
+   - Champs vides et actifs
+   - Boutons : Enregistrer, Annuler actifs
+   - DataGridView désactivé
+
+3. **Modification** :
+   - Champs actifs avec données chargées
+   - Snapshot des données pour annulation
+   - Boutons : Enregistrer, Annuler actifs
+   - DataGridView désactivé
+
+#### Gestion boutons automatisée
+
+```vb
+UtilsUCReferentiels.ConfigurerBoutonsMode(
+	_currentMode,
+	btnNew, btnEdit, btnSave, btnCancel, btnDelete
+)
+```
+
+### Forms_Communs
+
+#### DialogChoix.vb
+
+Form de dialogue réutilisable pour choix utilisateur :
+
+```vb
+Public Enum DialogResult
+	Yes
+	No
+	Cancel
+End Enum
+
+' Usage
+Dim dialog As New DialogChoix("Titre", "Message", showCancel:=True)
+Dim result As DialogResult = dialog.ShowDialog()
+```
+
+**Caractéristiques** :
+- Titre personnalisable
+- Message personnalisable
+- Boutons optionnels (Yes, No, Cancel)
+- Icône contextuelle (Question, Warning, Info, Error)
+- Retour DialogResult typé
 
 ---
 
-### 12. 📜 **Standards de structure du code (Obligatoire)**
+## Référentiels - Architecture post-migration UC
 
-#### 1️⃣ En-tête de fichier obligatoire
+### 1. Architecture générale
 
-Chaque nouveau fichier (Class, Module, Form) doit commencer par un en-tête descriptif et versionné.
+- Un UserControl par référentiel
+- Hébergement dans `PortailReferentiels`
+- Séparation stricte des couches :
+  - **SQL** → QueryModule (partiel par domaine)
+  - **Exécution DB** → GestionReferentiel (partiel par domaine)
+  - **UI** → UserControl
+  - **Entité métier** → Classe dédiée (ex: `Langue`, `Pays`, `PrixLit`)
+
+### 2. Design UI
+
+**À utiliser** :
+- TableLayoutPanel pour structuration liste/détails
+- Panel pour organisation logique
+- FlowLayoutPanel pour boutons
+
+**À éviter** :
+- SplitContainer (instabilité Designer)
+- Panels superflus sans logique
+
+**Pattern standard UC référentiel** :
+```
+pnlTop           → Titre + navigation (fil d'Ariane)
+pnlSearch        → Recherche (TextBox + boutons)
+tlpMain          → Liste (DataGridView) + Détails (champs)
+pnlActions       → Boutons d'action
+(StatusStrip hérité du contexte partagé)
+```
+
+### 3. Modes d'édition
+
+- Enum `ModeEdition` partagé via `UtilsForm`
+- Modification uniquement via bouton explicite
+- Pas de passage automatique en mode Modification sur TextChanged
+- Annulation via snapshot des données initiales
+
+**Implémentation SetMode** :
+
+```vb
+Private Sub SetMode(mode As ModeEdition)
+	_currentMode = mode
+
+	Select Case mode
+		Case ModeEdition.Consultation
+			' Désactiver champs, activer navigation
+			UtilsUCReferentiels.ConfigurerBoutonsMode(mode, btnNew, btnEdit, btnSave, btnCancel, btnDelete)
+
+		Case ModeEdition.Nouveau
+			' Vider et activer champs, snapshot = Nothing
+			UtilsUCReferentiels.ConfigurerBoutonsMode(mode, btnNew, btnEdit, btnSave, btnCancel, btnDelete)
+
+		Case ModeEdition.Modification
+			' Activer champs, créer snapshot pour annulation
+			_snapshot = New ClasseMetier With {.Prop1 = valeur1, ...}
+			UtilsUCReferentiels.ConfigurerBoutonsMode(mode, btnNew, btnEdit, btnSave, btnCancel, btnDelete)
+	End Select
+End Sub
+```
+
+### 4. Chargement des données
+
+**Référentiels à faible volume** :
+- Chargement automatique au Load
+
+**Référentiels volumineux** (ex: Tags, Auteurs) :
+- Pas de chargement complet automatique
+- Recherche obligatoire ou bouton explicite
+
+### 5. Validation UI
+
+- Utiliser `ErrorProvider` (partagé via contexte) pour validation locale
+- Utiliser `StatusStrip` (partagé via contexte) pour message global
+- Ne pas utiliser `MessageBox` pour validation simple
+- Exceptions DB → log via `GestionLog`
+
+**Exemple** :
+
+```vb
+Private Function ValidateForm() As Boolean
+	_context.SharedErrorProvider.Clear()
+	Dim isValid As Boolean = True
+
+	isValid = UtilsUCReferentiels.ValidateRequiredField(
+		_context.SharedErrorProvider,
+		txtNom, "Nom", txtNom.Text.Trim()
+	) And isValid
+
+	If Not isValid Then
+		_context.SharedStatusStrip.Items(0).Text = "Veuillez corriger les erreurs"
+	End If
+
+	Return isValid
+End Function
+```
+
+### 6. Majuscules/minuscules
+
+- `CharacterCasing = Upper` côté UI pour champs codes
+- Normalisation appliquée côté DB via helper `DbValueOrNullUpper`
+
+### 7. Standardisation DataGridView
+
+**Configuration obligatoire** :
+
+```vb
+Private Sub ConfigurerGrid()
+	UtilsUCReferentiels.ConfigurerStyleGrid(dgvListe)
+	UtilsUCReferentiels.HideTechnicalColumns(dgvListe)
+	dgvListe.Columns("nom_xxx").DefaultCellStyle.Font = New Font(dgvListe.Font, FontStyle.Bold)
+End Sub
+```
+
+**Règles visuelles** :
+- Header centré + bold
+- Lignes alternées sobres
+- Sélection douce
+- Colonne principale (`nom_xxx`, `libelle_xxx`) en gras
+- Masquage automatique des colonnes techniques (ID, codes)
+
+### 8. Factorisation
+
+Helpers génériques autorisés dans `UtilsUCReferentiels` uniquement si :
+- Utilisés dans au minimum 2 UC
+- Indépendants de la logique métier
+
+**Helpers validés** :
+- Tous ceux listés dans la section "Helpers partagés" ci-dessus
+
+### 9. Pattern UC validé
+
+Le pattern UC est désormais considéré **stable et reproductible**.
+
+Tout nouveau référentiel doit suivre strictement la checklist :
+1. Créer classe métier dans `Classes/Referentiels/`
+2. Ajouter requêtes SQL dans `QueryModule.<Domaine>.vb`
+3. Ajouter méthodes CRUD dans `GestionReferentiel.<Domaine>.vb`
+4. Créer UserControl dans `UserControls_Referentiels/`
+5. Implémenter `IContextAwareUserControl`
+6. Utiliser `ConfigurerStyleGrid`, `ConfigurerBoutonsMode`, `ValidateRequiredField`
+7. Implémenter les 3 modes (Consultation, Nouveau, Modification)
+8. Gérer snapshot pour annulation
+9. Ajouter l'UC dans `PortailReferentiels` avec navigation
+
+### 10. Référentiels hiérarchiques (parent/enfant)
+
+Certains référentiels sont composés de plusieurs niveaux :
+
+**Exemples** :
+- `UC_RefEnum` : types + valeurs
+- `UC_Recommandations` : origines + recommandations
+- `UC_PrixLit` : prix → catégories → années
+
+#### Principe
+
+- La table **parent** définit les catégories
+- La(les) table(s) **enfant(s)** contiennent les détails
+- Les tables métier référencent toujours les tables enfants
+
+#### Gestion modes hiérarchiques
+
+**UC à 2 niveaux** (ex: `UC_Recommandations`) :
+- 2 DataGridView (master + detail)
+- 2 jeux de boutons
+- 2 méthodes SetMode distinctes
+- Le bouton "Nouveau" du niveau enfant est désactivé si aucun parent sélectionné
+
+**UC à 3 niveaux** (ex: `UC_PrixLit`) :
+- 3 DataGridView
+- 3 jeux de boutons
+- 3 méthodes SetMode distinctes
+- Cascade de dépendances : Prix → Catégories → Années
+
+#### ConfigurerBoutonsMode avec hiérarchie
+
+```vb
+' Niveau parent (prix)
+UtilsUCReferentiels.ConfigurerBoutonsMode(
+	_modePrixLit,
+	btnNewPrix, btnEditPrix, btnSavePrix, btnCancelPrix, btnDeletePrix,
+	btnNewCategorie  ' Bouton "Nouveau" du niveau enfant
+)
+
+' Niveau enfant (catégorie)
+UtilsUCReferentiels.ConfigurerBoutonsMode(
+	_modeCategorie,
+	btnNewCategorie, btnEditCategorie, btnSaveCategorie, btnCancelCategorie, btnDeleteCategorie,
+	btnNewAnnee  ' Bouton "Nouveau" du niveau petit-enfant
+)
+```
+
+### 11. Gestion des suppressions
+
+Tous les référentiels doivent appliquer une logique de suppression cohérente.
+
+#### Principe général
+
+Avant toute suppression :
+1. Vérifier les dépendances dans les tables liées
+2. Distinguer les cas `RESTRICT` et `SET NULL`
+3. Informer clairement l'utilisateur
+4. Bloquer la suppression si nécessaire
+
+#### Cas RESTRICT
+
+Si une table possède une FK avec `RESTRICT` :
+- La suppression doit être **bloquée** côté application
+- Un message explicite indique les tables utilisant encore l'élément
+
+#### Cas SET NULL
+
+Si une table possède une FK avec `SET NULL` :
+- La suppression reste possible
+- L'utilisateur doit être averti que les références seront vidées
+
+#### Règle de maintenance
+
+Si une nouvelle table référence un référentiel existant :
+- Les contrôles de suppression doivent être mis à jour
+- Les requêtes de comptage d'usage doivent être complétées
+- Les messages utilisateur doivent être adaptés
+
+### 12. Synchronisation DataGridView / Détails
+
+**Règle obligatoire** :
+- Utiliser `DataGridView.CurrentRow` pour synchronisation
+- **Ne pas utiliser** `SelectedRows(0)`
+
+**Raison** :
+`SelectedRows` et `CurrentRow` peuvent diverger après certaines opérations (reload, suppression, changement de mode).
+
+**Implémentation** :
+
+```vb
+Private Sub BindSelectedToDetails()
+	If dgvListe.CurrentRow Is Nothing Then Exit Sub
+
+	Dim row As DataGridViewRow = dgvListe.CurrentRow
+	txtNom.Text = UtilsUCReferentiels.GetStringValue(row, "nom_xxx")
+	' ...
+End Sub
+```
+
+### 13. Événement obligatoire
+
+Chaque DataGridView doit implémenter :
+
+```vb
+Private Sub dgvListe_SelectionChanged(sender As Object, e As EventArgs) Handles dgvListe.SelectionChanged
+	If _currentMode = ModeEdition.Consultation Then
+		BindSelectedToDetails()
+	End If
+End Sub
+```
+
+**But** : Garantir la synchronisation immédiate entre la sélection utilisateur et les champs détail.
+
+---
+
+## Standards de structure du code
+
+### 1. En-tête de fichier obligatoire
 
 ```vb
 '------------------------------------------------------------
-' 📌 DatabaseManager.vb
+' DatabaseManager.vb
 ' Version : V1.0
 ' Date    : 18/02/2026
 ' Auteur  : Joëlle
 '
 ' Rôle :
 ' Gestion centralisée de la connexion MariaDB.
-' Point d’accès unique à la base Artefact.
+' Point d'accès unique à la base Artefact.
 '
 ' Évolution :
 ' - V1.0 : Création de la structure initiale.
 '------------------------------------------------------------
 ```
-#### 2️⃣ Versionnage systématique des procédures / fonctions
 
-Chaque Sub ou Function doit comporter :
-- Version
-- Date
-- Description claire
-- Indication des appels si pertinent
+### 2. Versionnage systématique des procédures/fonctions
 
 ```vb
 '------------------------------------------------------------
-' 📌 V1.0 - 18/02/2026
+' V1.0 - 18/02/2026
 ' GetConnexionMariaDB
 '
 ' Retourne une connexion MariaDB ouverte.
 ' Initialise la chaîne de connexion si nécessaire.
 '
-' Appelé par : Home_Load, ConfigManager
+' Appelé par : PortailReferentiels_Load, ConfigManager
 '------------------------------------------------------------
 Public Shared Function GetConnexionMariaDB() As MySqlConnection
 ```
-#### 3️⃣ Commentaire fonctionnel court
+
+### 3. Commentaire fonctionnel court
 
 Chaque procédure doit contenir un commentaire synthétique expliquant :
-- Ce qu’elle fait
-- Ce qu’elle retourne
-- Les cas d’erreur gérés
+- Ce qu'elle fait
+- Ce qu'elle retourne
+- Les cas d'erreur gérés
 
-Pas de roman. Pas de paraphrase du code. Juste l’intention.
+Pas de roman. Pas de paraphrase du code. Juste l'intention.
 
-#### 4️⃣ Structuration par régions
+### 4. Structuration par régions
 
-- **Organisation par régions** : `#Region "Section"` pour structurer le code en sections logiques (Déclarations, Constructeurs, Puis pour chaque grand processus utilisé.)
-- Obligatoire pour : Modules, Forms
-- Essayer de garder le même nom de Région pour les mêmes types de sections dans tout le projet (ex : "Processus X" pour les processus métier, "Variables / Constantes / Enum" pour les déclarations, etc.)
-- Recommandé si nécessaire pour classes volumineuses.
-- Ordre standard : Permet une navigation rapide et une meilleure lisibilité :
 ```vb
 #Region "Imports"
- .....
+...
 #End Region
-_______________________________________________
-#Region "Variables / Constantes / Enum"
-......
-#End Region
-_______________________________________________
-#Region "Processus X"
-........
-#End Region
-_______________________________________________
-```
-##### Objectifs :
 
+#Region "Variables / Constantes / Enum"
+...
+#End Region
+
+#Region "Initialisation / Load"
+...
+#End Region
+
+#Region "Gestion Modes"
+...
+#End Region
+
+#Region "Actions Boutons"
+...
+#End Region
+
+#Region "Validation"
+...
+#End Region
+
+#Region "Chargement Données"
+...
+#End Region
+```
+
+**Objectifs** :
 - Lisibilité
 - Maintenance facilitée
 - Navigation rapide
 - Structure cohérente dans tout le projet
 
-#### 5️⃣ Principe architectural
+### 5. Principe architectural
 
-- Une classe = une responsabilité principale.
-- Si une classe commence à gérer plusieurs processus distincts → refactorisation envisagée.
+- Une classe = une responsabilité principale
+- Si une classe commence à gérer plusieurs processus distincts → refactorisation
 
-### 13. 🧩 **Organisation des dossiers**
+---
 
-- `Core` : infrastructure système
-  - DatabaseManager
-  - ConfigManager
-  - QueryModule
-  - GestionLog
-- `Utils` : outils génériques transversaux
-- `Forms_Menu` : navigation principale
-- `Forms_*` : regroupement par domaine métier
+## Organisation des dossiers
 
-Principe :
-Tout élément nécessaire au démarrage de l'application appartient à `Core`.
+- **Core** : Infrastructure système (DatabaseManager, ConfigManager, QueryModule, GestionLog)
+- **Utils** : Outils génériques transversaux (UtilsForm, UtilsUCReferentiels, RichTextNotesHelper, InputHelpers, NavigationManager, UserControlContext)
+- **Forms_Portail** : Navigation principale (home.vb, PortailReferentiels.vb)
+- **Forms_Config** : Configuration (GestionConnexionMariaDb.vb)
+- **Forms_Communs** : Dialogues réutilisables (DialogChoix.vb)
+- **UserControls_Referentiels** : Tous les UC référentiels
+- **Classes/Referentiels** : Modèles métier
+- **Metier/Referentiels** : Logique métier (partiels par domaine)
 
-### 14. 🔄 **Initialisation des services**
+**Principe** : Tout élément nécessaire au démarrage appartient à `Core`.
 
-- L’initialisation des services critiques (DB, Config, etc.) doit être :
-  - explicite au démarrage
-  - avec fallback lazy sécurisé
+---
 
-### 15. 📦 **Packages NuGet**
+## Initialisation des services
 
-- Pour MariaDB / MySQL sous .NET 8 :
-  - Utiliser **MySqlConnector**
-  - Éviter MySql.Data sauf contrainte spécifique
+L'initialisation des services critiques (DB, Config, etc.) doit être :
+- Explicite au démarrage
+- Avec fallback lazy sécurisé
 
-### 16. 🧱 **Bootstrap Infrastructure**
+---
+
+## Packages NuGet
+
+Pour MariaDB / MySQL sous .NET 8 :
+- Utiliser **MySqlConnector**
+- Éviter MySql.Data sauf contrainte spécifique
+
+---
+
+## Bootstrap Infrastructure
 
 Lors de la mise en place initiale :
-
 - Un mode bootstrap temporaire est autorisé
 - Il doit être clairement identifié comme transitoire
 - Il doit être supprimé dès que ConfigManager est opérationnel
 
-### 17. 🔐 **Gestion des mots de passe (Infrastructure)**
+---
 
-- Toute modification de mot de passe doit être explicite (mode dédié).
-- La logique de décision du mot de passe ne doit jamais être implicite.
-- Une seule méthode est autorisée pour construire un modèle depuis l’UI (ex : BuildConfigFromUI()).
-- Les méthodes de test ne doivent jamais dépendre d’un état interne global (_cfg).
-- Une form ne peut se fermer automatiquement que si l’action métier est validée.
-- Aucune sauvegarde ne doit intervenir après un test échoué.
+## Gestion des mots de passe (Infrastructure)
 
-### 18. 📌 **Versionnement du schéma DB**
+- Toute modification de mot de passe doit être explicite (mode dédié)
+- La logique de décision du mot de passe ne doit jamais être implicite
+- Une seule méthode est autorisée pour construire un modèle depuis l'UI (ex : `BuildConfigFromUI()`)
+- Les méthodes de test ne doivent jamais dépendre d'un état interne global (`_cfg`)
+- Une form ne peut se fermer automatiquement que si l'action métier est validée
+- Aucune sauvegarde ne doit intervenir après un test échoué
 
-#### 1. Principe
+---
+
+## Versionnement du schéma DB
+
+### Principe
+
 Toute modification structurelle de la base Artefact doit :
-- être réalisée via un script SQL numéroté (`00N_description.sql`)
-- mettre à jour `meta_schema.schema_version`
-- être accompagnée de la mise à jour de `ExpectedSchemaVersion` dans l'application
+- Être réalisée via un script SQL numéroté (`00N_description.sql`)
+- Mettre à jour `meta_schema.schema_version`
+- Être accompagnée de la mise à jour de `ExpectedSchemaVersion` dans l'application
 
-#### 2. Synchronisation obligatoire
+### Synchronisation obligatoire
+
 La version du schéma en base et la constante `ExpectedSchemaVersion` doivent toujours être identiques.
 
-#### 3. Démarrage applicatif
-Au démarrage :
-- L'application vérifie la compatibilité du schéma.
-- Aucun contournement silencieux n'est autorisé.
-- En cas de mismatch, le statut `SchemaMismatch` est retourné et loggé.
+### Démarrage applicatif
 
-#### 4. Discipline
+Au démarrage :
+- L'application vérifie la compatibilité du schéma
+- Aucun contournement silencieux n'est autorisé
+- En cas de mismatch, le statut `SchemaMismatch` est retourné et loggé
+
+### Discipline
+
 Aucun changement structurel direct en base sans :
 - Script versionné
 - Mise à jour du changelog
 - Alignement de la constante applicative
 
-### 19. 📌 **Logging Production**
+---
 
-#### 1. Philosophie
+## Logging Production
+
+### Philosophie
 
 Les niveaux de log (Rapide, Succinct, Complet) sont des marqueurs de profondeur, pas un mécanisme de réduction.
-```vb	
+
+```vb
 GestionLog.EcrireLog("UI: config DB locale chargée.", GestionLog.LogLevel.Succinct, GestionLog.LogCategory.UI)
 ```
+
 Toute information loguée doit être écrite.
 
-#### 2. Gestion des erreurs
+### Gestion des erreurs
 
-Tout Catch doit comporter :
+Tout `Catch` doit comporter :
 - Un log Succinct (description synthétique)
 - Un log avec exception (ex.Message)
 - Si nécessaire, niveau Complet pour contexte technique
 
 ```vb
- Catch ex As Exception
-            stsLabelStatus.Text = "Erreur au chargement de la configuration."
-            GestionLog.EcrireLog("UI: erreur Load GestionConnexionMariaDb.", GestionLog.LogLevel.Succinct, GestionLog.LogCategory.UI, ex)
+Catch ex As Exception
+	_context.SharedStatusStrip.Items(0).Text = "Erreur au chargement."
+	GestionLog.EcrireLog("UI: erreur Load UC_Langues.", GestionLog.LogLevel.Succinct, GestionLog.LogCategory.UI, ex)
 
-            ' Point critique : la form ne peut pas fonctionner correctement
-            MessageBox.Show(
-            "Erreur au chargement de la configuration." & Environment.NewLine & ex.Message,
-            "Artefact",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Error
-        )
+	MessageBox.Show(
+		"Erreur au chargement." & Environment.NewLine & ex.Message,
+		"Artefact",
+		MessageBoxButtons.OK,
+		MessageBoxIcon.Error
+	)
+End Try
 ```
 
 Aucune exception ne doit être silencieuse.
 
-#### 3. Sécurité
+### Sécurité
 
 Il est strictement interdit de logguer :
 - Mot de passe
@@ -478,29 +892,30 @@ Il est strictement interdit de logguer :
 
 Les messages doivent passer par le mécanisme de masquage.
 
-#### 4. Session Header
+### Session Header
 
 Chaque exécution de l'application doit produire un header de session dans le fichier journalier incluant :
 - Date/Heure
 - Machine
 - User Windows
 
-#### 5. Discipline
+### Discipline
 
 Tout nouveau processus doit intégrer :
 - Logging structuré
-- Gestion d’erreur complète
+- Gestion d'erreur complète
 - Catégorie adaptée (Startup, Database, UI, Process)
 
-###  20. 📌 **Séparation des responsabilités (Logging & Crypto)**
+---
 
-1. Les modules techniques bas niveau (Crypto, DTO, modèles) ne doivent pas logguer.
-   Le logging appartient aux couches d’orchestration ou d’infrastructure.
+## Séparation des responsabilités (Logging & Crypto)
+
+1. Les modules techniques bas niveau (Crypto, DTO, modèles) ne doivent pas logguer. Le logging appartient aux couches d'orchestration ou d'infrastructure.
 
 2. Toute opération IO (lecture/écriture fichier) doit :
-   - être encapsulée dans un Try/Catch
-   - logguer l’erreur avec exception complète
-   - relancer l’exception si critique
+   - Être encapsulée dans un Try/Catch
+   - Logguer l'erreur avec exception complète
+   - Relancer l'exception si critique
 
 3. Toute opération de sécurité (DPAPI, déchiffrement) doit :
    - Throw une exception explicite
@@ -511,350 +926,100 @@ Tout nouveau processus doit intégrer :
    - Construction de connection string
    - Calcul des chemins système
 
-###  21.  📌 **UI & Sécurité des mots de passe**
+---
 
-1. Le mot de passe ne doit jamais être affiché en clair par défaut.
+## UI & Sécurité des mots de passe
+
+1. Le mot de passe ne doit jamais être affiché en clair par défaut
 2. Toute visualisation en clair doit être :
-   - temporaire (action maintenue)
-   - volontaire (action utilisateur explicite)
-   - non logguée
-3. Aucun secret (mot de passe, connection string complète) ne doit apparaître dans les logs.
+   - Temporaire (action maintenue)
+   - Volontaire (action utilisateur explicite)
+   - Non logguée
+3. Aucun secret (mot de passe, connection string complète) ne doit apparaître dans les logs
 
-###  22. 📌 **Modèle Form de base**
+---
 
-<img src="Images/Form_Modele._Plus.png" alt="FormModele" style="zoom:70%;" />
-
-###  23. 📌 **Validation UI**
+## Validation UI
 
 1. Les validations de formulaire :
-   - n'utilisent pas de MsgBox
-   - utilisent StatusStrip + Focus
-   - logguent uniquement en cas de KO (niveau Rapide, catégorie UI)
+   - N'utilisent pas de MsgBox
+   - Utilisent ErrorProvider (partagé via contexte) + Focus
+   - Logguent uniquement en cas de KO (niveau Rapide, catégorie UI)
 
 2. Les MsgBox sont réservées :
-   - aux blocages critiques
-   - aux erreurs empêchant la poursuite normale du flux
+   - Aux blocages critiques
+   - Aux erreurs empêchant la poursuite normale du flux
 
-###  24.  📌 **Orchestration Startup**
+---
 
-1. AppStartupManager :
-   - ne contient aucune logique UI
-   - ne déclenche aucun MsgBox
-   - retourne uniquement un statut
+## Orchestration Startup
+
+1. `AppStartupManager` :
+   - Ne contient aucune logique UI
+   - Ne déclenche aucun MsgBox
+   - Retourne uniquement un statut
 
 2. Toute erreur critique au démarrage :
-   - est logguée (Succinct + exception)
-   - provoque la fermeture contrôlée de l'application
+   - Est logguée (Succinct + exception)
+   - Provoque la fermeture contrôlée de l'application
 
-###  25. 📌 **Référentiels (mise à jour 02/03/2026)**
+---
 
-#### 1. Architecture Référentiels
-
-- Une form par référentiel.
-- Pas de mega-form multi-onglets.
-- Séparation stricte des couches :
-  - SQL → QueryModule
-  - Exécution DB → GestionReferentiel
-  - UI → Form
-  - Entité métier → Classe dédiée (ex: Langue)
-
-#### 2. Design UI
-
-- Ne pas utiliser SplitContainer (instabilité Designer).
-- Utiliser TableLayoutPanel pour structuration liste/détails.
-- Limiter les panels superflus.
-- Pattern standard :
-  - pnlTop (recherche)
-  - tlpMain (liste + détails)
-  - pnlActions (boutons)
-  - StatusStrip standard (stsStatus + stsLabelStatus)
-
-#### 3. Modes d'édition
-
-- Enum ModeEdition partagé via UtilsForms.
-- Modification uniquement via bouton explicite (Option B).
-- Pas de passage automatique en mode Modification sur TextChanged.
-- Annulation via snapshot des données initiales.
-
-#### 4. Chargement des données
-
-- Référentiels à faible volume :
-  - Chargement automatique au Load.
-- Référentiels volumineux (ex: Tags) :
-  - Pas de chargement complet automatique.
-  - Recherche obligatoire ou bouton explicite.
-
-#### 5. Validation UI
-
-- Utiliser errProvider pour validation locale.
-- Utiliser StatusStrip pour message global.
-- Ne pas utiliser MessageBox pour validation simple.
-- Exceptions DB → log via GestionLog.
-
-#### 6. Majuscules/minuscules
-- CharacterCasing = Upper côté UI.
-- Normalisation appliquée côté DB via helper DbValueOrNullUpper.
-
-#### 7. Standardisation DataGridView Référentiels
-
-Tous les DataGridView référentiels doivent utiliser :
-
-- FormatReferentielGrid(dgv)
-- HighlightMainColumn(dgv)
-
-Règles visuelles :
-- Header centré + bold.
-- Lignes alternées sobres.
-- Sélection douce.
-- Colonne principale (nom_xxx) en gras.
-- Aucune décoration excessive.
-
-#### 8. Factorisation autorisée
-
-Helpers génériques autorisés dans UtilsForms uniquement si :
-- utilisés au minimum dans 2 référentiels,
-- indépendants de la logique métier.
-
-Exemples validés :
-- ModeEdition (Enum partagé)
-- DgvGetSelectedId
-- DgvSelectRowById
-- FormatReferentielGrid
-- HighlightMainColumn
-
-#### 9. Pattern Référentiel validé
-
-Le pattern est désormais considéré stable et reproductible.
-Tout nouveau référentiel doit suivre strictement la checklist officielle.
-
-#### 10. Référentiels structurés (parent/enfant)
-
-Certains référentiels peuvent être composés de deux niveaux :
-
-- une table **type**
-- une table **valeur**
-
-Exemple :
-
-- `ref_enum_type`
-- `ref_enum`
-
-##### Principe
-
-- la table **type** définit les catégories
-- la table **valeur** contient les valeurs appartenant à ces catégories
-- les tables métier référencent toujours la table **valeur**
-
-##### Avantages
-
-- meilleure normalisation
-- meilleure extensibilité
-- structure claire pour l'UI
-
-##### Conventions
-
-Codes techniques :
-
-- `code_type` → MAJUSCULES
-- `code_valeur` → MAJUSCULES
-
-Libellés :
-
-- `libelle_type`
-- `libelle_valeur`
-
-Tri :
-
-- `ordre_affichage`
-- puis `libelle`
-
-#### 11. Gestion des suppressions dans les référentiels
-
-Tous les référentiels doivent appliquer une logique de suppression cohérente côté application afin d’éviter l’apparition d’erreurs SQL brutes liées aux contraintes de clés étrangères.
-
-##### 	Principe général
-
-Avant toute suppression d’un élément référentiel :
-
-1. vérifier les dépendances dans les tables liées
-2. distinguer les cas `RESTRICT` et `SET NULL`
-3. informer clairement l’utilisateur
-4. bloquer la suppression si nécessaire
-
-##### 	Cas RESTRICT
-
-Si une table possède une FK avec `RESTRICT` vers le référentiel :
-
-- la suppression doit être bloquée côté application
-- un message explicite doit indiquer les tables utilisant encore l’élément
-
-##### 	Cas SET NULL
-
-Si une table possède une FK avec `SET NULL` :
-
-- la suppression reste possible
-- l’utilisateur doit être averti que les références seront vidées
-
-##### 	Règle de maintenance
-
-Si une nouvelle table référence un référentiel existant :
-
-- les contrôles de suppression doivent être mis à jour
-- les requêtes de comptage d’usage doivent être complétées
-- les messages utilisateur doivent être adaptés.
-
-Cette règle est particulièrement importante pour les référentiels fortement partagés comme `ref_enum`.
-
-#### 12. Synchronisation DataGridView / Détails
-
-Dans les forms de gestion référentielle utilisant une DataGridView :
-
-- La ligne courante doit être déterminée à partir de `DataGridView.CurrentRow`.
-- L’utilisation de `SelectedRows(0)` doit être évitée pour la synchronisation des détails.
-- La méthode `BindSelectedToDetails()` doit toujours utiliser `CurrentRow`.
-
-##### Exemple :
-`If dgv.CurrentRow Is Nothing Then Exit Sub
-Dim row As DataGridViewRow = dgv.CurrentRow`
-
- ##### Raison :
-SelectedRows et CurrentRow peuvent diverger après certaines opérations (reload, suppression, changement de mode), ce qui peut provoquer une désynchronisation entre la grille et le panneau de détails.
-
-#### 13.  Événement obligatoire pour les référentiels
-
-Chaque DataGridView utilisée dans un référentiel doit implémenter l'événement :
-
-`SelectionChanged`
-
-Cet événement doit appeler BindSelectedToDetails() lorsque l'application est en mode Consultation.
-
-#####  But :
-Garantir la synchronisation immédiate entre la sélection utilisateur et les champs détail.
-
- ### 26. 📌**Gestion des champs de notes enrichies**
-
- Lorsqu'un champ de notes nécessite une mise en forme (gras, italique, souligné, listes), l'application utilise une **RichTextBox avec stockage RTF persistant**.
-
-#### Séparation stricte UI / Métier / DB
-
-Un contrôle UI ne doit jamais mélanger :
-- une valeur de filtre (ex: "Toutes origines")
-- une valeur métier persistée en base
-
-Les valeurs sentinelles (ex: 0) sont strictement interdites dans les champs métier.
-
-#### Champs RichText standard
-
-Tout champ nécessitant une mise en forme doit être implémenté avec :
-
-- xxx_rtf : stockage riche
-- xxx_txt : texte brut pour recherche
-
-Aucune exception.
-
-#### Recherche
-
-Les recherches SQL doivent :
-- utiliser exclusivement les colonnes `_txt`
-- ne jamais utiliser les colonnes `_rtf`
-
-#### UI RichText
-
-Toute manipulation RichText doit passer par :
-`RichTextNotesHelper`
-
-Interdictions :
-- manipulation directe du RTF dans les forms
-- duplication de logique
-
-#### ComboBox (critique)
+## ComboBox (critique)
 
 Une ComboBox ne peut pas avoir un double rôle :
-- filtre
-- champ métier
+- Filtre
+- Champ métier
 
 Si nécessaire :
-- utiliser deux contrôles distincts
+- Utiliser deux contrôles distincts
 
 Sinon :
-- prévoir validation stricte empêchant toute valeur invalide en base
+- Prévoir validation stricte empêchant toute valeur invalide en base
 
-###  27. 📌 **Gestion des recommandations**
+**Exemple d'erreur à éviter** :
+Une ComboBox contenant "Toutes origines" (filtre UI) ne doit jamais permettre de sauvegarder cette valeur en base.
+
+---
+
+## Gestion des recommandations
 
 Un système de recommandations permet d'enregistrer les sources ayant suggéré un livre.
 
-#### Principe
+### Principe
 
 Une recommandation est considérée comme un **événement documenté** provenant d'une source externe ou humaine.
 
-Exemples :
+Exemples : TikTok, Blog, Ami, Libraire, Podcast, Réseau social
 
-- TikTok
-- Blog
-- Ami
-- Libraire
-- Podcast
-- Réseau social
+### Structure
 
-#### Structure
+Les recommandations sont stockées dans la table `recommandations`.
 
-Les recommandations sont stockées dans la table :
-`recommandations`
 Chaque recommandation contient :
-- une origine (référentiel `ref_origine_recommandation`)
-- un nom ou identifiant de source
-- éventuellement une URL
-- une date
-- un commentaire utilisateur
+- Une origine (référentiel `origines_recommandation`)
+- Un nom ou identifiant de source
+- Éventuellement une URL
+- Une date
+- Un commentaire utilisateur (RTF + TXT)
 
-#### Association aux livres
+### Association aux livres
 
 Une recommandation peut être associée :
-
-- à un livre normalisé (`livres`)
-- à un livre en phase de staging (`livres_staging`)
+- À un livre normalisé (`livres`)
+- À un livre en phase de staging (`livres_staging`)
 
 L'association est réalisée via des **tables de liaison** :
-
 - `livres_recommandations`
 - `livres_staging_recommandations`
 
-#### Justification
+### Justification
 
 Ce modèle permet :
-
-- plusieurs recommandations pour un même livre
-- plusieurs sources distinctes
-- une séparation claire entre :
-  - l'événement de recommandation
-  - l'état du livre dans le système
-	
-### Règle — ComboBox (critique)
-
-Une ComboBox ne peut pas avoir un double rôle :
-- filtre
-- champ métier
-
-Si nécessaire :
-- utiliser deux contrôles distincts
-
-Sinon :
-- prévoir validation stricte empêchant toute valeur invalide en base
+- Plusieurs recommandations pour un même livre
+- Plusieurs sources distinctes
+- Une séparation claire entre l'événement de recommandation et l'état du livre dans le système
 
 ---
----
 
-> **Contact** : ***Joëlle (Manou)  - Les Artefacts de Manou***
->
-> Projet personnel, expérimental, réalisé pour le fun, le test et l'étude de connaissances techniques.
-> mailto: `joelle@nguyen.eu`
->
-> - GitHub privé : Artefact    https://github.com/AngeljoNG/Artefact
-> - GitHub public : Artefact  https://github.com/Les-Artefacts-de-Manou/Artefact
->
-
----
----
-
-[TOC]
-
+28/06/26

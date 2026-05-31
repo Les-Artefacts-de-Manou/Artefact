@@ -6,11 +6,11 @@
     <StartupObject>Artefact.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
-    <ApplicationIcon>Assets\Icons\Artefact.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Icons_Appli\Artefact.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Icons\Artefact.ico">
+    <Content Include="Assets\Icons_Appli\Artefact.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -36,6 +36,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="My Project\Settings.Designer.vb">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -53,26 +58,20 @@
     <None Update="Assets\Icons\Artefact.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Icons\Calibre.png">
+    <None Update="Assets\Icons_Tech\Calibre.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Icons\Forms.ico">
+    <None Update="Assets\Icons_Appli\Forms.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Icons\statut_ko.png">
+    <None Update="Assets\Icons_Tech\statut_ko.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Icons\statut_ok.png">
+    <None Update="Assets\Icons_Tech\statut_ok.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Assets\Icons\œil.png">
+    <None Update="Assets\Icons_Tech\œil.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Docs\Database\backup_NoData_artefact.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Docs\Database\backup_WithData_artefact.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Docs\CHANGELOG.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -80,6 +79,11 @@
     <None Update="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Update="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Update="Readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
